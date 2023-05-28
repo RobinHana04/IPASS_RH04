@@ -1,17 +1,33 @@
-package org.backend;
+package org.backend.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Verhuurder {
+public class Verhuurder implements NamedObject, Serializable {
     private String gebruikersnaam;
     private String wachtwoord;
-    private ArrayList<Vakantiehuis> alleHuizen = new ArrayList<>();
+    private static ArrayList<Verhuurder> alleVerhuurders = new ArrayList<>();
+    private static ArrayList<Vakantiehuis> alleHuizen = new ArrayList<>();
     private static Verhuurder deVerhuurder;
 
     public Verhuurder(String gebruikersnaam, String wachtwoord) {
         this.gebruikersnaam = gebruikersnaam;
         this.wachtwoord = wachtwoord;
+    }
+
+    public static ArrayList<Verhuurder> getAlleVerhuurders() {
+        return alleVerhuurders;
+    }
+
+    public static void voegVerhuurderToe(Verhuurder nv) {
+        if (!getAlleVerhuurders().contains(nv)) {
+            getAlleVerhuurders().add(nv);
+        }
+    }
+
+    public static void setAlleVerhuurders(ArrayList<Verhuurder> alleVerhuurders) {
+        Verhuurder.alleVerhuurders = alleVerhuurders;
     }
 
     public String getGebruikersnaam() {
@@ -30,16 +46,18 @@ public class Verhuurder {
         this.wachtwoord = wachtwoord;
     }
 
-    public ArrayList<Vakantiehuis> getAlleHuizen() {
+    public static ArrayList<Vakantiehuis> getAlleHuizen() {
         return alleHuizen;
     }
 
-    public void setAlleHuizen(ArrayList<Vakantiehuis> alleHuizen) {
-        this.alleHuizen = alleHuizen;
+    public static void setAlleHuizen(ArrayList<Vakantiehuis> alleHuizen) {
+        Verhuurder.alleHuizen = alleHuizen;
     }
 
     public void voegHuisToe(Vakantiehuis vh) {
-        getAlleHuizen().add(vh);
+        if(!getAlleHuizen().contains(vh)) {
+            getAlleHuizen().add(vh);
+        }
     }
 
     public static Verhuurder getDeVerhuurder() {
@@ -64,5 +82,10 @@ public class Verhuurder {
                 "gebruikersnaam='" + gebruikersnaam + '\'' +
                 ", wachtwoord='" + wachtwoord + '\'' +
                 '}';
+    }
+
+    @Override
+    public String getName() {
+        return this.gebruikersnaam;
     }
 }

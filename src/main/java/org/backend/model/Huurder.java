@@ -1,18 +1,29 @@
-package org.backend;
+package org.backend.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Huurder {
+public class Huurder implements NamedObject, Serializable {
     private String gebruikersnaam;
     private String wachtwoord;
-    private ArrayList<Boeking> alleBoekingen = new ArrayList<>();
+    private static ArrayList<Huurder> alleHuurders = new ArrayList<>();
+
+    private static ArrayList<Boeking> alleBoekingen = new ArrayList<>();
     private static Huurder deHuurder;
 
 
     public Huurder(String gebruikersnaam, String wachtwoord) {
         this.gebruikersnaam = gebruikersnaam;
         this.wachtwoord = wachtwoord;
+    }
+
+    public static ArrayList<Huurder> getAlleHuurders() {
+        return alleHuurders;
+    }
+
+    public static void setAlleHuurders(ArrayList<Huurder> alleHuurders) {
+        Huurder.alleHuurders = alleHuurders;
     }
 
     public String getGebruikersnaam() {
@@ -31,12 +42,12 @@ public class Huurder {
         this.wachtwoord = wachtwoord;
     }
 
-    public ArrayList<Boeking> getAlleBoekingen() {
+    public static ArrayList<Boeking> getAlleBoekingen() {
         return alleBoekingen;
     }
 
-    public void setAlleBoekingen(ArrayList<Boeking> alleBoekingen) {
-        this.alleBoekingen = alleBoekingen;
+    public static void setAlleBoekingen(ArrayList<Boeking> alleBoekingen) {
+        Huurder.alleBoekingen = alleBoekingen;
     }
 
     public void boekingToevoegen(Boeking b) {
@@ -65,5 +76,10 @@ public class Huurder {
                 "gebruikersnaam='" + gebruikersnaam + '\'' +
                 ", wachtwoord='" + wachtwoord + '\'' +
                 '}';
+    }
+
+    @Override
+    public String getName() {
+        return this.gebruikersnaam;
     }
 }

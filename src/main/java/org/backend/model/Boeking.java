@@ -1,9 +1,9 @@
-package org.backend;
+package org.backend.model;
 
-import java.util.Date;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Boeking {
+public class Boeking implements Serializable {
     private Huurder huurder;
     private double bedrag;
     private int transactieNr;

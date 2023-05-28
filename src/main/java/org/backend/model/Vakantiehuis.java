@@ -1,18 +1,41 @@
-package org.backend;
+package org.backend.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Objects;
 
-public class Vakantiehuis {
+public class Vakantiehuis implements NamedObject, Serializable {
     private String naam;
     private String adres;
     private String woonOppervlakte;
     private static Vakantiehuis hetVakantiehuis;
     private int status;
+    private static ArrayList<Vakantiehuis> alleHuizen = new ArrayList<>();
 
-    public Vakantiehuis(String adres, String woonOppervlakte, int status) {
+    public Vakantiehuis(String naam, String adres, String woonOppervlakte, int status) {
         this.adres = adres;
         this.woonOppervlakte = woonOppervlakte;
         this.status = status;
+        this.naam = naam;
+    }
+
+    @Override
+    public String getName() {
+        return this.naam;
+    }
+
+    public static ArrayList<Vakantiehuis> getAlleHuizen() {
+        return alleHuizen;
+    }
+
+    public static void addHuis(Vakantiehuis vh) {
+        if (!getAlleHuizen().contains(vh)) {
+            getAlleHuizen().add(vh);
+        }
+    }
+
+    public static void setAlleHuizen(ArrayList<Vakantiehuis> alleHuizen) {
+        Vakantiehuis.alleHuizen = alleHuizen;
     }
 
     public String getAdres() {
@@ -29,10 +52,6 @@ public class Vakantiehuis {
 
     public void setWoonOppervlakte(String woonOppervlakte) {
         this.woonOppervlakte = woonOppervlakte;
-    }
-
-    public String getNaam() {
-        return naam;
     }
 
     public void setNaam(String naam) {
