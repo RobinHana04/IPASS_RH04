@@ -69,6 +69,7 @@ body {
     margin: 0;
     padding: 10px;
     background-color: rgb(59, 61, 57);
+    color: rgb(3, 207, 252);
 }
 
 .form-container {
@@ -115,6 +116,10 @@ form {
 
 #rst {
     background-color: rgb(24, 171, 219);
+}
+
+label, p {
+    color: rgb(3, 207, 252);
 }
 
 #sbmt {

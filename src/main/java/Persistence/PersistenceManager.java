@@ -1,8 +1,8 @@
 package Persistence;
 
-import org.backend.model.VacationRental;
-import org.backend.model.Vakantiehuis;
-import org.backend.model.Verhuurder;
+import org.backend.domain.VacationRental;
+import org.backend.domain.Vakantiehuis;
+import org.backend.domain.Verhuurder;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -36,8 +36,6 @@ public class PersistenceManager {
             ois.close();
         }
     }
-
-
 
     public static void saveVacationRentalToFile() throws IOException {
         VacationRental vcr = VacationRental.getVacationRental();

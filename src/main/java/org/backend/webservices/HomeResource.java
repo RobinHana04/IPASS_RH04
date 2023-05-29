@@ -1,6 +1,6 @@
 package org.backend.webservices;
 
-import org.backend.model.*;
+import org.backend.domain.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
