@@ -1,8 +1,8 @@
 package org.backend.setup;
 
 import Persistence.PersistenceManager;
-import org.backend.model.Vakantiehuis;
-import org.backend.model.Verhuurder;
+import org.backend.domain.Vakantiehuis;
+import org.backend.domain.Verhuurder;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

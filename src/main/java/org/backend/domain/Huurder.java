@@ -1,4 +1,4 @@
-package org.backend.model;
+package org.backend.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;

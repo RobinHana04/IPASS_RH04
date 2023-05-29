@@ -1,4 +1,4 @@
-package org.backend.model;
+package org.backend.domain;
 
 public class VerhuurderRequest  {
     public String gebruikersnaam;
