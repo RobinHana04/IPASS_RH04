@@ -1,6 +1,7 @@
-package org.backend.setup;
+package setup;
 
 import Persistence.PersistenceManager;
+import org.backend.domain.VacationRental;
 import org.backend.domain.Vakantiehuis;
 import org.backend.domain.Verhuurder;
 
@@ -16,17 +17,25 @@ public class MyServletContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         try {
             System.out.println("Server is starting with necessary data");
-            Verhuurder v1 = new Verhuurder("Robin", "Hallo123");
+            Verhuurder v1 = new Verhuurder("Robin");
             Vakantiehuis vh1 = new Vakantiehuis("Huisje 1", "Victoriameer 121", "50m2", 1);
-            Vakantiehuis vh2 = new Vakantiehuis("Huisje 2", "AmeliaPolder 33", "220m2", 2);
-            Vakantiehuis.addHuis(vh1);
-            Vakantiehuis.addHuis(vh2);
-            v1.voegHuisToe(vh1);
-            v1.voegHuisToe(vh2);
-            Verhuurder.voegVerhuurderToe(v1);
-            PersistenceManager.saveVacationRentalToFile(); // Sla het VacationRental-object op
+           Vakantiehuis vh2 = new Vakantiehuis("Huisje 2", "AmeliaPolder 33", "220m2", 2);
+           Vakantiehuis.addHuis(vh1);
+           Vakantiehuis.addHuis(vh2);
+           v1.voegHuisToe(vh1);
+           v1.voegHuisToe(vh2);
+           Verhuurder.voegVerhuurderToe(v1);
+
+           VacationRental vacationRental = VacationRental.getVacationRental();
+           vacationRental.addVakantiehuizenVR(vh1);
+           vacationRental.addVakantiehuizenVR(vh2);
+           vacationRental.addVerhuurderVR(v1);
             PersistenceManager.loadVacationRentalFromFile();
-        } catch (IOException | ClassNotFoundException e) {
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }

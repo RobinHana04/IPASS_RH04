@@ -18,9 +18,9 @@ public class VerhuurderTests {
 
     @BeforeEach
     public void setup() {
-        v1 = new Verhuurder("RobinHana", "Hallo123");
-        v2 = new Verhuurder("RobinHana", "Hallo123");
-        v3 = new Verhuurder("TomKemper", "Test1234");
+        v1 = new Verhuurder("RobinHana");
+        v2 = new Verhuurder("RobinHana");
+        v3 = new Verhuurder("TomKemper");
 
         vh1 = new Vakantiehuis("Huis1", "A", "30m2", 1);
         vh2 = new Vakantiehuis("Huis1", "A", "30m2", 1);
@@ -34,8 +34,8 @@ public class VerhuurderTests {
 
     @Test
     public void ReedsToegevoegdHuisBijIemandAndersToevoegen() {
-        v1 = new Verhuurder("RobinHana", "Hallo123");
-        v2 = new Verhuurder("RobinHana2", "Hallo123");
+        v1 = new Verhuurder("RobinHana");
+        v2 = new Verhuurder("RobinHana2");
         v1.voegHuisToe(vh2);
         v2.voegHuisToe(vh2);
         assertEquals(1, Verhuurder.getAlleHuizen().size());

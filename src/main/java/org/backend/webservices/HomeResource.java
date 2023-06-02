@@ -1,6 +1,8 @@
 package org.backend.webservices;
 
-import org.backend.domain.*;
+import org.backend.domain.VacationRental;
+import org.backend.domain.Vakantiehuis;
+import org.backend.domain.VakantiehuisRequest;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -43,14 +45,34 @@ public class HomeResource {
     public Response addHome(VakantiehuisRequest vRq) {
         VacationRental vr = VacationRental.getVacationRental();
         Vakantiehuis selectedHome = vr.getVakantieHuisBijNaam(vRq.naam);
-
         if (selectedHome == null) {
             Vakantiehuis v1 = new Vakantiehuis(vRq.naam, vRq.adres, vRq.woonOppervlakte, vRq.status);
             Vakantiehuis.addHuis(v1);
+            vr.addVakantiehuizenVR(v1);
         } else {
             var error = new AbstractMap.SimpleEntry<>("error", "Vakantiehuis kon niet gemaakt worden");
-            return Response.status(409).entity(error).build();
+            return Response.status(409).entity(error)
+                    .header("Access-Control-Allow-Origin", "*") // Add the CORS header to allow requests from all origins
+                    .build();
         }
-    return Response.ok(vr.getVakantieHuisBijNaam(vRq.naam)).build();
+
+        return Response.ok(vr.getVakantieHuisBijNaam(vRq.naam))
+                .header("Access-Control-Allow-Origin", "*") // Add the CORS header to allow requests from all origins
+                .build();
     }
+
+    @DELETE
+    @Path("{name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteHome(@PathParam("name") String naam) {
+        VacationRental vr = VacationRental.getVacationRental();
+        Vakantiehuis removedVh = Vakantiehuis.removeVakantiehuis(naam);
+        if(removedVh == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            vr.getVakantiehuizenVR().remove(removedVh);
+            return Response.ok(removedVh).build();
+        }
+    }
+
 }

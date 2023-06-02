@@ -1,15 +1,12 @@
-import {baseURL} from '/view/backendserverconfig';
-import Vakantiehuis from "/model/Vakantiehuis";
-
 export default class VakantiehuisService {
-    addHuis(huis) {
-        const url = `${baseURL}/restservices/homes/`;
+    static addHuis(huis) {
+        const url = `http://localhost:8080/restservices/homes`;
         const options = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
             },
-            body: JSON.stringify(huis), // Use 'huis' instead of 'trip'
+            body: JSON.stringify(huis),
         };
 
         return fetch(url, options)
@@ -22,7 +19,7 @@ export default class VakantiehuisService {
     }
 
     getHuizen() {
-        const url = `${baseURL}/restservices/homes/`;
+        const url = `http://localhost:8080/restservices/homes`;
         return fetch(url)
             .then((response) => response.json());
     }
@@ -36,7 +33,7 @@ export default class VakantiehuisService {
     }
 
     updateHuis(huis) {
-        const url = `${baseURL}/restservices/homes/${huis.naam}`;
+        const url = `http://localhost:8080/restservices/homes/${huis.naam}`;
         const options = {
             method: 'PUT',
             headers: {
@@ -56,7 +53,7 @@ export default class VakantiehuisService {
     }
 
     deleteHuis(huis) {
-        const url = `${baseURL}/restservices/homes/${huis.naam}`;
+        const url = `http://localhost:8080/restservices/homes/${huis.naam}`;
         const options = {
             method: 'DELETE',
             headers: {
