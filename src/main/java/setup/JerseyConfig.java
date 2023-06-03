@@ -7,6 +7,7 @@ import javax.ws.rs.ApplicationPath;
 @ApplicationPath("restservices")
 public class JerseyConfig extends ResourceConfig {
     public JerseyConfig() {
-        packages(".webservices");
+        packages("org.backend.webservices");
+        register(CORSResponseFilter.class);
     }
 }
