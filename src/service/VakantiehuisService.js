@@ -1,6 +1,7 @@
+import { baseURL } from '../view/backendserverconfig.js';
 export default class VakantiehuisService {
     static addHuis(huis) {
-        const url = `http://localhost:8080/restservices/homes`;
+        const url = `${baseURL}/restservices/homes`;
         const options = {
             method: 'POST',
             headers: {
@@ -19,7 +20,7 @@ export default class VakantiehuisService {
     }
 
     getHuizen() {
-        const url = `http://localhost:8080/restservices/homes`;
+        const url = `${baseURL}/restservices/homes`;
         return fetch(url)
             .then((response) => response.json());
     }
@@ -33,7 +34,7 @@ export default class VakantiehuisService {
     }
 
     updateHuis(huis) {
-        const url = `http://localhost:8080/restservices/homes/${huis.naam}`;
+        const url = `${baseURL}/restservices/homes/${huis.naam}`;
         const options = {
             method: 'PUT',
             headers: {
@@ -53,7 +54,7 @@ export default class VakantiehuisService {
     }
 
     deleteHuis(huis) {
-        const url = `http://localhost:8080/restservices/homes/${huis.naam}`;
+        const url = `${baseURL}/restservices/homes/${huis.naam}`;
         const options = {
             method: 'DELETE',
             headers: {

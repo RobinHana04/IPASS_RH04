@@ -1,6 +1,7 @@
 package org.backend.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Boeking implements Serializable {
@@ -11,6 +12,8 @@ public class Boeking implements Serializable {
     private String datumTot;
     private Vakantiehuis vakantiehuis;
     private static Boeking deBoeking;
+
+    private static ArrayList<Vakantiehuis> alleBoekingen = new ArrayList<>();
 
     public Boeking(Huurder huurder, Vakantiehuis vakantiehuis, double bedrag, int transactieNr, String datumVan, String datumTot) {
         this.huurder = huurder;
@@ -67,6 +70,22 @@ public class Boeking implements Serializable {
 
     public static void setDeBoeking(Boeking deBoeking) {
         Boeking.deBoeking = deBoeking;
+    }
+
+    public Vakantiehuis getVakantiehuis() {
+        return vakantiehuis;
+    }
+
+    public void setVakantiehuis(Vakantiehuis vakantiehuis) {
+        this.vakantiehuis = vakantiehuis;
+    }
+
+    public static ArrayList<Vakantiehuis> getAlleBoekingen() {
+        return alleBoekingen;
+    }
+
+    public static void setAlleBoekingen(ArrayList<Vakantiehuis> alleBoekingen) {
+        Boeking.alleBoekingen = alleBoekingen;
     }
 
     @Override

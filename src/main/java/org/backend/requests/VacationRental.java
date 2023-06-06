@@ -1,4 +1,6 @@
-package org.backend.domain;
+package org.backend.requests;
+
+import org.backend.domain.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;

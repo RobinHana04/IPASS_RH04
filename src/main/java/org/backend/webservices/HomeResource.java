@@ -1,8 +1,8 @@
 package org.backend.webservices;
 
-import org.backend.domain.VacationRental;
+import org.backend.requests.VacationRental;
 import org.backend.domain.Vakantiehuis;
-import org.backend.domain.VakantiehuisRequest;
+import org.backend.requests.VakantiehuisRequest;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

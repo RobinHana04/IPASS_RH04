@@ -1,6 +1,6 @@
 package Persistence;
 
-import org.backend.domain.VacationRental;
+import org.backend.requests.VacationRental;
 import org.backend.domain.Vakantiehuis;
 import org.backend.domain.Verhuurder;
 

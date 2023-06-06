@@ -1,7 +1,8 @@
-import Vakantiehuis from "./Vakantiehuis.js";
-import VakantiehuisService from './VakantiehuisService.js';
-console.log(Vakantiehuis);
+import Vakantiehuis from "../model/Vakantiehuis.js";
+import VakantiehuisService from '../service/VakantiehuisService.js';
+
 const form = document.querySelector('form');
+const naamInput = form.querySelector('#naam');
 
 function showError(error) {
     const errorMsg = document.querySelector('.errormsg');
@@ -14,7 +15,6 @@ function showError(error) {
         errorMsg.textContent = 'Oeps, er is iets misgegaan!';
     }
 
-    // Optionally, you can throw the error again to stop the execution flow
     throw error;
 }
 
@@ -34,27 +34,22 @@ function extractHouseFromForm() {
     const adresInput = formElement.querySelector('input[name="adres"]');
     const statusInput = formElement.querySelector('input[name="status"]');
 
-    const vh = new Vakantiehuis({
-        adres: woonInput.value,
-        woonoppervlakte: adresInput.value,
+    return new Vakantiehuis({
+        adres: adresInput.value,
+        woonoppervlakte: woonInput.value,
         status: parseInt(statusInput.value),
         naam: naamInput.value,
     });
-
-    return vh;
 }
 
 function formSubmit(event) {
-    console.log('FormSubmit called');
     event.preventDefault(); // Prevent the default form submission behavior
 
     const houseData = extractHouseFromForm();
-    const house = new Vakantiehuis(houseData); // Instantiate a new Trip instance
-    console.log('HUIS DATA:', JSON.stringify(houseData));
-    console.log('HUIS OBJECT:', JSON.stringify(house));
+    const house = new Vakantiehuis(houseData); // Instantiate a new House instance
     VakantiehuisService.addHuis(house)
         .then(() => {
-            window.location.href = 'http://localhost:8080/restservices/homes/'; // Redirect to index.html on success
+            window.location.href = 'http://localhost:8080/restservices/homes/'; // Redirect to server URL on success
         })
         .catch(error => {
             console.log('Error:', error);
@@ -62,6 +57,5 @@ function formSubmit(event) {
         });
 }
 
-const naamInput = form.querySelector('#naam');
 naamInput.addEventListener('input', clearError);
 form.addEventListener('submit', formSubmit);

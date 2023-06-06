@@ -102,6 +102,7 @@ public class Vakantiehuis implements NamedObject, Serializable {
                 "naam='" + naam + '\'' +
                 ", adres='" + adres + '\'' +
                 ", woonOppervlakte='" + woonOppervlakte + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }
