@@ -1,4 +1,4 @@
-package org.backend.domain;
+package org.backend.requests;
 
 public class VakantiehuisRequest  {
     public String naam;

@@ -1,6 +1,6 @@
 package Persistence;
 
-import org.backend.domain.VacationRental;
+import org.backend.requests.VacationRental;
 import org.backend.domain.Vakantiehuis;
 import org.backend.domain.Verhuurder;
 
@@ -21,13 +21,11 @@ public class PersistenceManager {
             List<Vakantiehuis> vakantiehuizen = loadedObj.getAllVakantieHuizen();
             List<Verhuurder> verhuurders = loadedObj.getAllVerhuurders();
 
-// Print de vakantiehuizen
             System.out.println("Vakantiehuizen:");
             for (Vakantiehuis vakantiehuis : vakantiehuizen) {
                 System.out.println(vakantiehuis);
             }
 
-// Print de verhuurders
             System.out.println("Verhuurders:");
             for (Verhuurder verhuurder : verhuurders) {
                 System.out.println(verhuurder);
@@ -39,7 +37,6 @@ public class PersistenceManager {
 
     public static void saveVacationRentalToFile() throws IOException {
         VacationRental vcr = VacationRental.getVacationRental();
-        System.out.println(vcr);
         OutputStream os = Files.newOutputStream(filePath);
         ObjectOutputStream oos = new ObjectOutputStream(os);
         oos.writeObject(vcr);

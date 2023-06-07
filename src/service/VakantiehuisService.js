@@ -1,15 +1,13 @@
-import {baseURL} from '/view/backendserverconfig';
-import Vakantiehuis from "/model/Vakantiehuis";
-
+import { baseURL } from '../view/backendserverconfig.js';
 export default class VakantiehuisService {
-    addHuis(huis) {
-        const url = `${baseURL}/restservices/homes/`;
+    static addHuis(huis) {
+        const url = `${baseURL}/restservices/homes`;
         const options = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
             },
-            body: JSON.stringify(huis), // Use 'huis' instead of 'trip'
+            body: JSON.stringify(huis),
         };
 
         return fetch(url, options)
@@ -22,7 +20,7 @@ export default class VakantiehuisService {
     }
 
     getHuizen() {
-        const url = `${baseURL}/restservices/homes/`;
+        const url = `${baseURL}/restservices/homes`;
         return fetch(url)
             .then((response) => response.json());
     }

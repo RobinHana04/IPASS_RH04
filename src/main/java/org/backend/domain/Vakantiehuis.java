@@ -34,6 +34,20 @@ public class Vakantiehuis implements NamedObject, Serializable {
         }
     }
 
+    public static Vakantiehuis removeVakantiehuis(String naam) {
+        Vakantiehuis selectedVakantiehuis = getVakantiehuisBijNaam(naam);
+        if(selectedVakantiehuis == null) {
+            return null;
+        } else {
+            getAlleHuizen().remove(selectedVakantiehuis);
+        }
+        return selectedVakantiehuis;
+    }
+
+    public static Vakantiehuis getVakantiehuisBijNaam(String naam){
+        return getAlleHuizen().stream().filter(vakantiehuis -> vakantiehuis.getName().equals(naam)).findFirst().orElse(null);
+    }
+
     public static void setAlleHuizen(ArrayList<Vakantiehuis> alleHuizen) {
         Vakantiehuis.alleHuizen = alleHuizen;
     }
@@ -88,6 +102,7 @@ public class Vakantiehuis implements NamedObject, Serializable {
                 "naam='" + naam + '\'' +
                 ", adres='" + adres + '\'' +
                 ", woonOppervlakte='" + woonOppervlakte + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

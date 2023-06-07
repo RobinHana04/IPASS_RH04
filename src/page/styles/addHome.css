@@ -147,6 +147,14 @@ label, p {
     background-color: rgb(26, 24, 24);
 }
 
+.error {
+    border-color: red;
+    border-width: 2px;
+}
 
-
-
+.errormsg {
+    margin: 1rem;
+    color: red;
+    font-weight: bold;
+    font-size: x-large;
+}

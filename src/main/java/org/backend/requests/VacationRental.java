@@ -1,6 +1,9 @@
-package org.backend.domain;
+package org.backend.requests;
+
+import org.backend.domain.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -12,6 +15,25 @@ public class VacationRental implements Serializable {
     public static VacationRental getVacationRental() {
         return deRental;
     }
+    private List<Vakantiehuis> vakantiehuizenVR = new ArrayList<>();
+    private List<Verhuurder> verhuurdersVR = new ArrayList<>();
+
+    public void addVakantiehuizenVR(Vakantiehuis vakantiehuis) {
+        getVakantiehuizenVR().add(vakantiehuis);
+    }
+
+    public void addVerhuurderVR (Verhuurder verhuurder) {
+        getVerhuurdersVR().add(verhuurder);
+    }
+
+    public List<Vakantiehuis> getVakantiehuizenVR() {
+        return vakantiehuizenVR;
+    }
+
+    public List<Verhuurder> getVerhuurdersVR() {
+        return verhuurdersVR;
+    }
+
 
     public static void setVacationRental(VacationRental nVr) {
         deRental = nVr;

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/addHome.css">
+    <script type="module" src="../view/app.js"></script>
+    <title>Voeg Huis Toe</title>
+</head>
+<body>
+<main>
+    <div class="navbar">
+        <div class="dropdown">
+            <button class="dropbtn">___
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="index.html">Home</a>
+                <a href="addHome.html">Voeg Huis toe</a>
+            </div>
+        </div>
+    </div>
+
+    <h1 class="heading">Voeg een nieuw huis toe</h1>
+    <hr class="separator">
+    <div class="form-container">
+        <form>
+            <div class="form-row">
+                <div class="form-column">
+                    <label for="naam">Naam:</label>
+                    <input type="text" id="naam" name="naam" required>
+                </div>
+                <div class="form-column">
+                    <label for="woonoppervlakte">WoonOppervlakte (M2):</label>
+                    <input type="number" id="woonoppervlakte" name="woonoppervlakte" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-column">
+                    <label for="adres">Adres:</label>
+                    <input type="text" id="adres" name="adres" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-column">
+                    <label for="foto">Foto:</label>
+                    <input type="file" id="foto" name="foto" accept="" required>
+                </div>
+                <div class="form-column">
+                    <label for="status">Status:</label>
+                    <input type="number" id="status" name="status" required>
+                    <p>1: Beschikbaar 2: Niet beschikbaar</p>
+                </div>
+            </div>
+            <div class="form-buttons">
+                <section class="errormsg"></section>
+                <input id="sbmt" type="submit" value="Submit">
+                <input id="rst" type="reset" value="Reset">
+            </div>
+        </form>
+        <hr class="separator">
+    </div>
+</main>
+</body>
+</html>
