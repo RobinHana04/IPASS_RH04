@@ -12,14 +12,15 @@ public class VacationRental implements Serializable {
     private static Predicate<NamedObject> hasName(String name) {
         return e -> e.getName().equals(name);
     }
-    public static VacationRental getVacationRental() {
-        return deRental;
-    }
     private List<Vakantiehuis> vakantiehuizenVR = new ArrayList<>();
     private List<Verhuurder> verhuurdersVR = new ArrayList<>();
 
     public void addVakantiehuizenVR(Vakantiehuis vakantiehuis) {
         getVakantiehuizenVR().add(vakantiehuis);
+    }
+
+    public static VacationRental getVacationRental() {
+        return deRental;
     }
 
     public void addVerhuurderVR (Verhuurder verhuurder) {
@@ -33,7 +34,6 @@ public class VacationRental implements Serializable {
     public List<Verhuurder> getVerhuurdersVR() {
         return verhuurdersVR;
     }
-
 
     public static void setVacationRental(VacationRental nVr) {
         deRental = nVr;
