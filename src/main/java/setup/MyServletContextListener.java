@@ -1,6 +1,7 @@
 package setup;
 
 import Persistence.PersistenceManager;
+import org.backend.security.MyUser;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -14,7 +15,9 @@ public class MyServletContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         try {
             System.out.println("Server is starting with necessary data");
-           PersistenceManager.loadVacationRentalFromFile();
+            MyUser.createUser("Robin", "password", "admin");
+            MyUser.createUser("Joe", "password", "user");
+            PersistenceManager.loadVacationRentalFromFile();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
