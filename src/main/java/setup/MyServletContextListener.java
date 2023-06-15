@@ -1,6 +1,8 @@
 package setup;
 
 import Persistence.PersistenceManager;
+import org.backend.domain.Vakantiehuis;
+import org.backend.requests.VacationRental;
 import org.backend.security.MyUser;
 
 import javax.servlet.ServletContextEvent;
@@ -19,6 +21,9 @@ public class MyServletContextListener implements ServletContextListener {
             MyUser.createUser("Joe", "password", "user");
             PersistenceManager.loadVacationRentalFromFile();
 
+            Vakantiehuis v1 = new Vakantiehuis("Huisje 11", "Victoriameer 111", "50m2", 500);
+            Vakantiehuis.getAlleHuizen().add(v1);
+            VacationRental.getVacationRental().addVakantiehuizenVR(v1);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {

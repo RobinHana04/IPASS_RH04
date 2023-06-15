@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacation Home Rentals</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <script type="module" src="../view/indexView.js"></script>
+
+</head>
+<body>
+<span id="pagetitle"></span>
+<p class="homes"></p>
+<header>
+    <h1>Vacation Home Rentals</h1>
+    <div class="navbar">
+        <div class="dropdown">
+            <button class="dropbtn">___
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="index.html">Home</a>
+                <a href="addHome.html">Voeg Huis toe</a>
+                <a href="mijnHuizen.html">Mijn huizen</a>
+                <a href="mijnBoekingen.html">Mijn boekingen</a>
+                <a href="login.html">Uitloggen</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <template id="home-template">
+        <article id="HomeName" class="home">
+            <h2>Home Name</h2>
+            <p class="adres">adres</p>
+            <p class="woonoppervlakte">woonoppervlakte</p>
+            <p class="bedrag">bedrag</p>
+        </article>
+    </template>
+</main>
+</body>
+
+<footer>
+    <p>&copy; 2023 Vacation Home Rentals. All rights reserved.</p>
+</footer>
+</html>

@@ -9,11 +9,12 @@ import java.util.function.Predicate;
 
 public class VacationRental implements Serializable {
     private static VacationRental deRental = new VacationRental();
+    private List<Vakantiehuis> vakantiehuizenVR = new ArrayList<>();
+    private List<Verhuurder> verhuurdersVR = new ArrayList<>();
+
     private static Predicate<NamedObject> hasName(String name) {
         return e -> e.getName().equals(name);
     }
-    private List<Vakantiehuis> vakantiehuizenVR = new ArrayList<>();
-    private List<Verhuurder> verhuurdersVR = new ArrayList<>();
 
     public void addVakantiehuizenVR(Vakantiehuis vakantiehuis) {
         getVakantiehuizenVR().add(vakantiehuis);
@@ -35,8 +36,8 @@ public class VacationRental implements Serializable {
         return verhuurdersVR;
     }
 
-    public static void setVacationRental(VacationRental nVr) {
-        deRental = nVr;
+    public static void setVacationRental(VacationRental vacationRental) {
+        deRental = vacationRental;
     }
 
     public List<Vakantiehuis> getAllVakantieHuizen() {

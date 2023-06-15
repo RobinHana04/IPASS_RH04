@@ -19,7 +19,7 @@ export default class VakantiehuisService {
             });
     }
 
-    getHuizen() {
+    static getHuizen() {
         const url = `${baseURL}/restservices/homes`;
         return fetch(url)
             .then((response) => response.json());

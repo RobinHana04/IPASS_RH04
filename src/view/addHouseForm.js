@@ -32,12 +32,12 @@ function extractHouseFromForm() {
     const naamInput = formElement.querySelector('input[name="naam"]');
     const woonInput = formElement.querySelector('input[name="woonoppervlakte"]');
     const adresInput = formElement.querySelector('input[name="adres"]');
-    const statusInput = formElement.querySelector('input[name="status"]');
+    const bedragInput = formElement.querySelector('input[name="status"]');
 
     return new Vakantiehuis({
         adres: adresInput.value,
         woonoppervlakte: woonInput.value,
-        status: parseInt(statusInput.value),
+        bedrag: parseInt(bedragInput.value),
         naam: naamInput.value,
     });
 }
@@ -49,7 +49,7 @@ function formSubmit(event) {
     const house = new Vakantiehuis(houseData); // Instantiate a new House instance
     VakantiehuisService.addHuis(house)
         .then(() => {
-            window.location.href = 'http://localhost:8080/restservices/homes/'; // Redirect to server URL on success
+            window.location.href = '../page/index.html'; // Redirect to server URL on success
         })
         .catch(error => {
             console.log('Error:', error);

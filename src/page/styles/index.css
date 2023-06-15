@@ -1,0 +1,120 @@
+/* Reset default styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+}
+
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    background-color: rgb(59, 61, 57);
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: rgb(59, 61, 57);
+    color: rgb(3, 207, 252);
+    padding: 20px;
+}
+
+header {
+    color: rgb(3, 207, 252);
+    background-color: #333;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.vacation-home {
+    background-color: rgb(59, 61, 57);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.vacation-home .image-container {
+    margin-bottom: 10px;
+}
+
+.vacation-home img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.vacation-home h2 {
+    margin-top: 10px;
+}
+
+.vacation-home p {
+    margin-bottom: 10px;
+}
+
+.vacation-home .btn {
+    display: inline-block;
+}
+
+footer {
+    background-color: rgb(59, 61, 57);
+    padding: 20px;
+    text-align: center;
+}

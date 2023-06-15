@@ -4,7 +4,6 @@ import org.backend.domain.Vakantiehuis;
 import org.backend.requests.VacationRental;
 import org.backend.requests.VakantiehuisRequest;
 
-import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -14,7 +13,6 @@ import java.util.List;
 @Path("homes")
 public class HomeResource {
     @GET
-    @RolesAllowed("admin")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getHomes() {
         VacationRental vr = VacationRental.getVacationRental();

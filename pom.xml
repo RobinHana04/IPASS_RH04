@@ -72,12 +72,6 @@
           <artifactId>DemoBEP</artifactId>
           <version>1.0</version>
       </dependency>
-
-      <!--    <dependency> for authentication later on -->
-    <!--      <groupId>io.jsonwebtoken</groupId>-->
-    <!--      <artifactId>jjwt</artifactId>-->
-    <!--      <version>0.9.1</version>-->
-    <!--    </dependency>-->
   </dependencies>
 
   <build>
