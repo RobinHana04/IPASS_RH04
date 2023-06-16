@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Boeking implements Serializable {
-    private int boekingNr;
+    private int transactieNr;
     private Huurder huurder;
     private LocalDate datumVan;
     private LocalDate datumTot;
@@ -42,13 +42,6 @@ public class Boeking implements Serializable {
         return datumTot;
     }
 
-    public int getBoekingNr() {
-        return boekingNr;
-    }
-
-    public void setBoekingNr(int boekingNr) {
-        this.boekingNr = boekingNr;
-    }
 
     public void setDatumTot(LocalDate datumTot) {
         this.datumTot = datumTot;
@@ -78,12 +71,20 @@ public class Boeking implements Serializable {
         Boeking.alleBoekingen = alleBoekingen;
     }
 
+    public int getTransactieNr() {
+        return transactieNr;
+    }
+
+    public void setTransactieNr(int transactieNr) {
+        this.transactieNr = transactieNr;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Boeking)) return false;
         Boeking boeking = (Boeking) o;
-        return boekingNr == boeking.boekingNr && Objects.equals(huurder, boeking.huurder) && Objects.equals(datumVan, boeking.datumVan) && Objects.equals(datumTot, boeking.datumTot) && Objects.equals(vakantiehuis, boeking.vakantiehuis);
+        return transactieNr == boeking.transactieNr && Objects.equals(huurder, boeking.huurder) && Objects.equals(datumVan, boeking.datumVan) && Objects.equals(datumTot, boeking.datumTot) && Objects.equals(vakantiehuis, boeking.vakantiehuis);
     }
 
     @Override
@@ -92,8 +93,7 @@ public class Boeking implements Serializable {
                 "huurder=" + huurder +
                 ", datumVan=" + datumVan +
                 ", datumTot=" + datumTot +
-                ", boekingNr=" + boekingNr +
+                ", transactieNr=" + transactieNr +
                 '}';
     }
-
 }
