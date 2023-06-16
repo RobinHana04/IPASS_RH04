@@ -1,33 +1,66 @@
 import VakantiehuisService from "../service/VakantiehuisService.js";
-import Vakantiehuis from "../model/Vakantiehuis.js";
 
 function renderHouse(house) {
     const templateElement = document.querySelector('#home-template');
-    const templateContent = templateElement.content;
-    const allhousesElement = templateContent.querySelector('.home');
+    const templateContent = templateElement.content.cloneNode(true);
+
+    const houseElements = templateContent.querySelectorAll('.home');
     const articleElement = templateContent.querySelector('#HomeName');
 
-    const nameElement = allhousesElement.querySelector('h2').textContent = house.name || "Geen naam";
-    const adresElement = allhousesElement.querySelector('.adres').textContent = house.adres || "Geen adres";
-    const oppervlakteElement = allhousesElement.querySelector('.woonoppervlakte').textContent = house.woonOppervlakte || "Geen woonOppervlakte";
-    const bedragElement = allhousesElement.querySelector('.bedrag').textContent = house.status || "Geen bedrag";
+    houseElements.forEach((element) => {
+        const nameElement = element.querySelector('h2');
+        nameElement.textContent = house.name;
 
-    articleElement.setAttribute('id', house.name);
+        const adresElement = element.querySelector('.adres');
+        adresElement.textContent = 'Adres: ' + house.adres;
 
-    return templateContent;
+        const oppervlakteElement = element.querySelector('.woonoppervlakte');
+        console.log(oppervlakteElement);
+        oppervlakteElement.textContent = 'WoonOppervlakte (m2): ' + house.woonOppervlakte;
+
+        const bedragElement = element.querySelector('.bedrag');
+        console.log(bedragElement);
+        bedragElement.textContent = 'Prijs per nacht: €' + house.status;
+
+        articleElement.setAttribute('id', house.name);
+        articleElement.addEventListener("click", showDialog);
+    });
+
+    const houseContainer = document.createElement('div');
+    houseContainer.classList.add('house-container');
+    houseElements.forEach((element) => {
+        houseContainer.appendChild(element);
+    });
+
+    return houseContainer;
+}
+
+function showDialog() {
+    const dialog = document.querySelector("#boekingDialog");
+    if (dialog && !dialog.hasAttribute("open")) {
+        dialog.showModal();
+    }
+}
+
+function closeDialog() {
+    const dialog = document.querySelector("#boekingDialog");
+    const cancelButton = document.querySelector("#closeDialogButton");
+
+    cancelButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        dialog.close();
+    });
 }
 
 function render() {
     const allhousesElement = document.querySelector(".homes");
-    console.log(allhousesElement);
     return VakantiehuisService.getHuizen()
         .then(houses => {
             console.log(houses);
             allhousesElement.innerHTML = '';
             houses.forEach(house => {
                 const houseElement = renderHouse(house);
-                console.log(houseElement);
-                console.log(allhousesElement.appendChild(houseElement));
+                allhousesElement.appendChild(houseElement);
 
             });
         })
@@ -36,7 +69,11 @@ function render() {
             throw error;
         });
 }
+const dialog = document.querySelector("#boekingDialog #closeDialogButton");
+document.addEventListener(dialog, closeDialog);
 
 document.addEventListener('DOMContentLoaded', () => {
     window.onload = render();
+
 });
+

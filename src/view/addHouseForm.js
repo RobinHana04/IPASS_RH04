@@ -34,12 +34,15 @@ function extractHouseFromForm() {
     const adresInput = formElement.querySelector('input[name="adres"]');
     const bedragInput = formElement.querySelector('input[name="status"]');
 
-    return new Vakantiehuis({
+    const v = new Vakantiehuis({
         adres: adresInput.value,
-        woonoppervlakte: woonInput.value,
-        bedrag: parseInt(bedragInput.value),
+        woonOppervlakte: woonInput.value,
+        status: parseInt(bedragInput.value),
         naam: naamInput.value,
     });
+
+    console.log(v);
+    return v;
 }
 
 function formSubmit(event) {

@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-column">
                     <label for="woonoppervlakte">WoonOppervlakte (M2):</label>
-                    <input type="number" id="woonoppervlakte" name="woonoppervlakte" required>
+                    <input type="text" id="woonoppervlakte" name="woonoppervlakte" required>
                 </div>
             </div>
             <div class="form-row">
@@ -60,6 +60,15 @@
         </form>
         <hr class="separator">
     </div>
+        <p class="homes"></p>
+        <template id="home-template">
+            <article id="HomeName" class="home">
+                <h2>Home Name</h2>
+                <p class="adres">adres</p>
+                <p class="woonoppervlakte">woonoppervlakte</p>
+                <p class="bedrag">bedrag</p>
+            </article>
+        </template>
 </main>
 </body>
 </html>

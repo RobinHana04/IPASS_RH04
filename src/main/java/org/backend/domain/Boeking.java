@@ -1,24 +1,22 @@
 package org.backend.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class Boeking implements Serializable {
+    private int boekingNr;
     private Huurder huurder;
-    private double bedrag;
-    private int transactieNr;
-    private String datumVan;
-    private String datumTot;
+    private LocalDate datumVan;
+    private LocalDate datumTot;
     private Vakantiehuis vakantiehuis;
     private static Boeking deBoeking;
 
     private static ArrayList<Vakantiehuis> alleBoekingen = new ArrayList<>();
 
-    public Boeking(Huurder huurder, Vakantiehuis vakantiehuis, double bedrag, int transactieNr, String datumVan, String datumTot) {
+    public Boeking(Huurder huurder, Vakantiehuis vakantiehuis, LocalDate datumVan, LocalDate datumTot) {
         this.huurder = huurder;
-        this.bedrag = bedrag;
-        this.transactieNr = transactieNr;
         this.datumVan = datumVan;
         this.datumTot = datumTot;
         this.vakantiehuis = vakantiehuis;
@@ -32,35 +30,27 @@ public class Boeking implements Serializable {
         this.huurder = huurder;
     }
 
-    public double getBedrag() {
-        return bedrag;
-    }
-
-    public void setBedrag(double bedrag) {
-        this.bedrag = bedrag;
-    }
-
-    public int getTransactieNr() {
-        return transactieNr;
-    }
-
-    public void setTransactieNr(int transactieNr) {
-        this.transactieNr = transactieNr;
-    }
-
-    public String getDatumVan() {
+    public LocalDate getDatumVan() {
         return datumVan;
     }
 
-    public void setDatumVan(String datumVan) {
+    public void setDatumVan(LocalDate datumVan) {
         this.datumVan = datumVan;
     }
 
-    public String getDatumTot() {
+    public LocalDate getDatumTot() {
         return datumTot;
     }
 
-    public void setDatumTot(String datumTot) {
+    public int getBoekingNr() {
+        return boekingNr;
+    }
+
+    public void setBoekingNr(int boekingNr) {
+        this.boekingNr = boekingNr;
+    }
+
+    public void setDatumTot(LocalDate datumTot) {
         this.datumTot = datumTot;
     }
 
@@ -91,19 +81,18 @@ public class Boeking implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Boeking)) return false;
         Boeking boeking = (Boeking) o;
-        return Double.compare(boeking.bedrag, bedrag) == 0 && transactieNr == boeking.transactieNr && Objects.equals(huurder, boeking.huurder) && Objects.equals(datumVan, boeking.datumVan) && Objects.equals(datumTot, boeking.datumTot);
+        return boekingNr == boeking.boekingNr && Objects.equals(huurder, boeking.huurder) && Objects.equals(datumVan, boeking.datumVan) && Objects.equals(datumTot, boeking.datumTot) && Objects.equals(vakantiehuis, boeking.vakantiehuis);
     }
 
     @Override
     public String toString() {
         return "Boeking{" +
                 "huurder=" + huurder +
-                ", bedrag=" + bedrag +
-                ", transactieNr=" + transactieNr +
                 ", datumVan=" + datumVan +
                 ", datumTot=" + datumTot +
+                ", boekingNr=" + boekingNr +
                 '}';
     }
 

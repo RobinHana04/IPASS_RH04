@@ -9,8 +9,6 @@
 
 </head>
 <body>
-<span id="pagetitle"></span>
-<p class="homes"></p>
 <header>
     <h1>Vacation Home Rentals</h1>
     <div class="navbar">
@@ -30,15 +28,38 @@
 </header>
 
 <main>
-    <template id="home-template">
-        <article id="HomeName" class="home">
-            <h2>Home Name</h2>
-            <p class="adres">adres</p>
-            <p class="woonoppervlakte">woonoppervlakte</p>
-            <p class="bedrag">bedrag</p>
-        </article>
-    </template>
+    <div class="container">
+        <h1 id="page_title"></h1>
+        <div class="homes"></div>
+        <div class="column">
+            <template id="home-template">
+                <article id="HomeName" class="home">
+                    <h2 class="hn">Home Name</h2>
+                    <p class="adres">adres</p>
+                    <p class="woonoppervlakte">woonoppervlakte</p>
+                    <p class="bedrag">bedrag</p>
+                    <input id="boekBtn" type="submit" value="Boek">
+                </article>
+            </template>
+        </div>
+    </div>
+
+    <dialog id="boekingDialog">
+        <h2>Nieuwe boeking maken</h2>
+        <form>
+            <h2 class="hnbd">Home Name</h2>
+            <label for="datumVan">Aankomst Datum:</label>
+            <input type="date" id="datumVan" name="datumVan" required>
+
+            <label for="datumTot">Vertrek Datum:</label>
+            <input type="date" id="datumTot" name="datumTot" required>
+
+            <button id="submitBtn" type="submit">Submit</button>
+            <button id="closeDialogButton">Cancel</button>
+        </form>
+    </dialog>
 </main>
+
 </body>
 
 <footer>

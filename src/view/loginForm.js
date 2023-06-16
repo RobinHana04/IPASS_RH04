@@ -39,7 +39,7 @@ function formSubmit(event) {
     const user = new MyUser(userData);
     LoginService.login(user)
         .then(() => {
-            window.location.href = '../page/addHome.html';
+            window.location.href = '../page/index.html';
         })
         .catch(error => {
             showError(error);

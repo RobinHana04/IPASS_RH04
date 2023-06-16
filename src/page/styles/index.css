@@ -74,47 +74,121 @@ body {
     padding: 20px;
 }
 
+main {
+    margin: auto;
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr;
+    border-radius: 15px;
+}
+
+#boekingDialog {
+    margin: auto;
+    width: 50%;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-gap: 20px; /* Adjust the gap between columns if desired */
+}
+
+#page_title {
+    text-align: center;
+}
+
+.homes {
+    background-color: #333;
+}
+
+.column {
+    display: grid;
+    grid-gap: 20px;
+}
+
 header {
     color: rgb(3, 207, 252);
     background-color: #333;
     padding: 20px;
 }
 
-header h1 {
-    margin: 0;
+.hn {
+    text-align: center;
 }
 
-.vacation-home {
-    background-color: rgb(59, 61, 57);
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.vacation-home .image-container {
-    margin-bottom: 10px;
-}
-
-.vacation-home img {
-    width: 100%;
-    border-radius: 5px;
-}
-
-.vacation-home h2 {
+#boekBtn {
     margin-top: 10px;
-}
-
-.vacation-home p {
-    margin-bottom: 10px;
-}
-
-.vacation-home .btn {
-    display: inline-block;
+    background-color: rgb(59, 61, 57);
+    color: rgb(3, 207, 252);
+    width: 65px;
+    height: 35px;
+    cursor: pointer;
 }
 
 footer {
     background-color: rgb(59, 61, 57);
     padding: 20px;
     text-align: center;
+}
+
+.grid-container {
+    display: grid;
+    padding: 10px;
+}
+
+.house-container {
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.house-container:nth-child(odd) {
+    background-color: black;
+}
+
+.house-container:nth-child(even) {
+    background-color: black;
+}
+
+#boekingDialog {
+    background-color: rgb(59, 61, 57);
+    color: rgb(3, 207, 252);
+}
+
+#boekingDialog h2 {
+    text-align: center;
+}
+
+#boekingDialog form {
+    padding: 20px;
+}
+
+#boekingDialog label {
+    margin-top: 20px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+#boekingDialog input[type="date"] {
+    width: 100%;
+    padding: 5px;
+}
+
+#boekingDialog #submitBtn {
+    margin-top: 5px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#boekingDialog #closeDialogButton {
+    margin-top: 5px;
+    background-color: red;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }

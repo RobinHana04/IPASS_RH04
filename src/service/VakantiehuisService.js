@@ -25,7 +25,7 @@ export default class VakantiehuisService {
             .then((response) => response.json());
     }
 
-    getHuis(key) {
+    static getHuis(key) {
         const url = `${baseURL}/restservices/homes/${key}`;
         return fetch(url)
             .then((response) => {
@@ -33,7 +33,7 @@ export default class VakantiehuisService {
             });
     }
 
-    updateHuis(huis) {
+    static updateHuis(huis) {
         const url = `${baseURL}/restservices/homes/${huis.naam}`;
         const options = {
             method: 'PUT',
