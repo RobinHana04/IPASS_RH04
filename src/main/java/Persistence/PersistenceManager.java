@@ -17,9 +17,11 @@ public class PersistenceManager {
             ObjectInputStream ois = new ObjectInputStream(is);
             Object obj = ois.readObject();
 
-            if (obj != null) {
+            if (obj != null && obj instanceof VacationRental) {
                 VacationRental loadedObj = (VacationRental) obj;
-                List<Vakantiehuis> vakantiehuizen = loadedObj.getAllVakantieHuizen();
+                VacationRental.setVacationRental(loadedObj);
+
+                List<Vakantiehuis> vakantiehuizen = loadedObj.getVakantiehuizenVR();
                 List<Verhuurder> verhuurders = loadedObj.getAllVerhuurders();
 
                 System.out.println("Vakantiehuizen:");
@@ -31,11 +33,11 @@ public class PersistenceManager {
                 for (Verhuurder verhuurder : verhuurders) {
                     System.out.println(verhuurder);
                 }
-                VacationRental.setVacationRental(loadedObj);
+
                 ois.close();
             }
         } else {
-            System.out.println("File bestaat niet.");
+            System.out.println("File does not exist.");
         }
     }
 
@@ -44,7 +46,7 @@ public class PersistenceManager {
         OutputStream os = new FileOutputStream(file);
         ObjectOutputStream oos = new ObjectOutputStream(os);
         oos.writeObject(vcr);
-        System.out.println("Alle verhuurders van VR object: " + vcr.getVakantiehuizenVR());
+        System.out.println("All houses from VacationRental object: " + vcr.getVakantiehuizenVR());
         oos.flush();
         oos.close();
     }

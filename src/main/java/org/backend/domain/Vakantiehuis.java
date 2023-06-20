@@ -8,15 +8,28 @@ public class Vakantiehuis implements NamedObject, Serializable {
     private String naam;
     private String adres;
     private String woonOppervlakte;
-    private static Vakantiehuis hetVakantiehuis;
     private int status;
+    private String image;
     private static ArrayList<Vakantiehuis> alleHuizen = new ArrayList<>();
 
-    public Vakantiehuis(String naam, String adres, String woonOppervlakte, int status) {
+    private static ArrayList<Boeking> alleBoekingen = new ArrayList<>();
+    private static Vakantiehuis hetVakantiehuis;
+    private Verhuurder verhuurder;
+
+    public Vakantiehuis(String naam, String adres, String woonOppervlakte, int status, String image) {
         this.adres = adres;
         this.woonOppervlakte = woonOppervlakte;
         this.status = status;
         this.naam = naam;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override
@@ -64,6 +77,22 @@ public class Vakantiehuis implements NamedObject, Serializable {
         return woonOppervlakte;
     }
 
+    public static ArrayList<Boeking> getAlleBoekingen() {
+        return alleBoekingen;
+    }
+
+    public static void setAlleBoekingen(ArrayList<Boeking> alleBoekingen) {
+        Vakantiehuis.alleBoekingen = alleBoekingen;
+    }
+
+    public Verhuurder getVerhuurder() {
+        return verhuurder;
+    }
+
+    public void setVerhuurder(Verhuurder verhuurder) {
+        this.verhuurder = verhuurder;
+    }
+
     public void setWoonOppervlakte(String woonOppervlakte) {
         this.woonOppervlakte = woonOppervlakte;
     }
@@ -102,7 +131,9 @@ public class Vakantiehuis implements NamedObject, Serializable {
                 "naam='" + naam + '\'' +
                 ", adres='" + adres + '\'' +
                 ", woonOppervlakte='" + woonOppervlakte + '\'' +
-                ", status='" + status + '\'' +
+                ", status=" + status +
+                ", image='" + image + '\'' +
+                ", verhuurder=" + verhuurder +
                 '}';
     }
 }

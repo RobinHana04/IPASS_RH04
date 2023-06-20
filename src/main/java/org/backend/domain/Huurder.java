@@ -6,24 +6,14 @@ import java.util.Objects;
 
 public class Huurder implements NamedObject, Serializable {
     private String gebruikersnaam;
-    private String wachtwoord;
     private static ArrayList<Huurder> alleHuurders = new ArrayList<>();
 
     private static ArrayList<Boeking> alleBoekingen = new ArrayList<>();
     private static Huurder deHuurder;
 
 
-    public Huurder(String gebruikersnaam, String wachtwoord) {
+    public Huurder(String gebruikersnaam) {
         this.gebruikersnaam = gebruikersnaam;
-        this.wachtwoord = wachtwoord;
-    }
-
-    public static ArrayList<Huurder> getAlleHuurders() {
-        return alleHuurders;
-    }
-
-    public static void setAlleHuurders(ArrayList<Huurder> alleHuurders) {
-        Huurder.alleHuurders = alleHuurders;
     }
 
     public String getGebruikersnaam() {
@@ -34,15 +24,21 @@ public class Huurder implements NamedObject, Serializable {
         this.gebruikersnaam = gebruikersnaam;
     }
 
-    public String getWachtwoord() {
-        return wachtwoord;
+    public void addBoeking(Boeking b) {
+        if (!getAlleBoekingen().contains(b)) {
+            getAlleBoekingen().add(b);
+        }
     }
 
-    public void setWachtwoord(String wachtwoord) {
-        this.wachtwoord = wachtwoord;
+    public static ArrayList<Huurder> getAlleHuurders() {
+        return alleHuurders;
     }
 
-    public static ArrayList<Boeking> getAlleBoekingen() {
+    public static void setAlleHuurders(ArrayList<Huurder> alleHuurders) {
+        Huurder.alleHuurders = alleHuurders;
+    }
+
+    public ArrayList<Boeking> getAlleBoekingen() {
         return alleBoekingen;
     }
 
@@ -67,14 +63,13 @@ public class Huurder implements NamedObject, Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Huurder huurder = (Huurder) o;
-        return Objects.equals(gebruikersnaam, huurder.gebruikersnaam) && Objects.equals(wachtwoord, huurder.wachtwoord);
+        return Objects.equals(gebruikersnaam, huurder.gebruikersnaam);
     }
 
     @Override
     public String toString() {
         return "Huurder{" +
                 "gebruikersnaam='" + gebruikersnaam + '\'' +
-                ", wachtwoord='" + wachtwoord + '\'' +
                 '}';
     }
 

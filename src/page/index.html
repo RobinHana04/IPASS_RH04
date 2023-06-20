@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacation Home Rentals</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <script type="module" src="../view/indexView.js"></script>
+
+</head>
+<body>
+<header>
+    <h1>Vacation Home Rentals</h1>
+    <div class="navbar">
+        <div class="dropdown">
+            <button class="dropbtn">___
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="index.html">Home</a>
+                <a href="addHome.html">Voeg Huis toe</a>
+                <a href="mijnHuizen.html">Mijn huizen</a>
+                <a href="mijnBoekingen.html">Mijn boekingen</a>
+                <a href="login.html">Uitloggen</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <h1 id="page_title"></h1>
+        <div class="homes"></div>
+        <div class="column">
+            <template id="home-template">
+                <article id="HomeName" class="home">
+                    <img src="">
+                    <h2 class="hn">Home Name</h2>
+                    <p class="adres">adres</p>
+                    <p class="woonoppervlakte">woonoppervlakte</p>
+                    <p class="bedrag">bedrag</p>
+                    <input id="boekBtn" type="submit" value="Boek">
+                </article>
+            </template>
+        </div>
+    </div>
+
+    <dialog id="boekingDialog">
+        <h2 class="hnbd">Home Name</h2>
+        <form>
+            <h2>Nieuwe boeking maken</h2>
+            <label for="datumVan">Aankomst Datum:</label>
+            <input type="date" id="datumVan" name="datumVan" required>
+
+            <label for="datumTot">Vertrek Datum:</label>
+            <input type="date" id="datumTot" name="datumTot" required>
+
+            <button id="submitBtn" type="submit">Submit</button>
+            <button id="closeDialogButton">Cancel</button>
+        </form>
+    </dialog>
+</main>
+
+</body>
+
+<footer>
+    <p>&copy; 2023 Vacation Home Rentals. All rights reserved.</p>
+</footer>
+</html>

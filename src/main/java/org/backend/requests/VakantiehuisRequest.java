@@ -5,4 +5,5 @@ public class VakantiehuisRequest  {
     public String adres;
     public String woonOppervlakte;
     public int status;
+    public String image;
 }

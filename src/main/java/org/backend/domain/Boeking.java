@@ -1,24 +1,24 @@
 package org.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class Boeking implements Serializable {
-    private Huurder huurder;
-    private double bedrag;
     private int transactieNr;
-    private String datumVan;
-    private String datumTot;
+    @JsonIgnore
+    private Huurder huurder;
+    private LocalDate datumVan;
+    private LocalDate datumTot;
     private Vakantiehuis vakantiehuis;
     private static Boeking deBoeking;
+    private static ArrayList<Boeking> alleBoekingen = new ArrayList<>();
 
-    private static ArrayList<Vakantiehuis> alleBoekingen = new ArrayList<>();
-
-    public Boeking(Huurder huurder, Vakantiehuis vakantiehuis, double bedrag, int transactieNr, String datumVan, String datumTot) {
+    public Boeking(Huurder huurder, Vakantiehuis vakantiehuis, LocalDate datumVan, LocalDate datumTot) {
         this.huurder = huurder;
-        this.bedrag = bedrag;
-        this.transactieNr = transactieNr;
         this.datumVan = datumVan;
         this.datumTot = datumTot;
         this.vakantiehuis = vakantiehuis;
@@ -32,35 +32,25 @@ public class Boeking implements Serializable {
         this.huurder = huurder;
     }
 
-    public double getBedrag() {
-        return bedrag;
-    }
-
-    public void setBedrag(double bedrag) {
-        this.bedrag = bedrag;
-    }
-
-    public int getTransactieNr() {
-        return transactieNr;
-    }
-
-    public void setTransactieNr(int transactieNr) {
-        this.transactieNr = transactieNr;
-    }
-
-    public String getDatumVan() {
+    public LocalDate getDatumVan() {
         return datumVan;
     }
 
-    public void setDatumVan(String datumVan) {
+    public void setDatumVan(LocalDate datumVan) {
         this.datumVan = datumVan;
     }
 
-    public String getDatumTot() {
+    public LocalDate getDatumTot() {
         return datumTot;
     }
 
-    public void setDatumTot(String datumTot) {
+    public static void addBoeking(Boeking b) {
+        if (!getAlleBoekingen().contains(b)) {
+            getAlleBoekingen().add(b);
+        }
+    }
+
+    public void setDatumTot(LocalDate datumTot) {
         this.datumTot = datumTot;
     }
 
@@ -80,31 +70,37 @@ public class Boeking implements Serializable {
         this.vakantiehuis = vakantiehuis;
     }
 
-    public static ArrayList<Vakantiehuis> getAlleBoekingen() {
+    public static ArrayList<Boeking> getAlleBoekingen() {
         return alleBoekingen;
     }
 
-    public static void setAlleBoekingen(ArrayList<Vakantiehuis> alleBoekingen) {
+    public static void setAlleBoekingen(ArrayList<Boeking> alleBoekingen) {
         Boeking.alleBoekingen = alleBoekingen;
+    }
+
+    public int getTransactieNr() {
+        return transactieNr;
+    }
+
+    public void setTransactieNr(int transactieNr) {
+        this.transactieNr = transactieNr;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Boeking)) return false;
         Boeking boeking = (Boeking) o;
-        return Double.compare(boeking.bedrag, bedrag) == 0 && transactieNr == boeking.transactieNr && Objects.equals(huurder, boeking.huurder) && Objects.equals(datumVan, boeking.datumVan) && Objects.equals(datumTot, boeking.datumTot);
+        return transactieNr == boeking.transactieNr && Objects.equals(huurder, boeking.huurder) && Objects.equals(datumVan, boeking.datumVan) && Objects.equals(datumTot, boeking.datumTot) && Objects.equals(vakantiehuis, boeking.vakantiehuis);
     }
 
     @Override
     public String toString() {
         return "Boeking{" +
                 "huurder=" + huurder +
-                ", bedrag=" + bedrag +
-                ", transactieNr=" + transactieNr +
                 ", datumVan=" + datumVan +
                 ", datumTot=" + datumTot +
+                ", transactieNr=" + transactieNr +
                 '}';
     }
-
 }

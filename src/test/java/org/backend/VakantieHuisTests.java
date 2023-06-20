@@ -15,9 +15,9 @@ public class VakantieHuisTests {
 
     @BeforeEach
     public void setup() {
-        vh1 = new Vakantiehuis("Huis1", "A", "30m2", 1);
-        vh2 = new Vakantiehuis("Huis1", "A", "30m2", 1);
-        vh3 = new Vakantiehuis("Huis2", "B", "40m2", 2);
+        vh1 = new Vakantiehuis("Huis1", "A", "30m2", 1, "");
+        vh2 = new Vakantiehuis("Huis1", "A", "30m2", 1, "");
+        vh3 = new Vakantiehuis("Huis2", "B", "40m2", 2, "");
         v1 = new Verhuurder("Robin");
     }
 
@@ -35,8 +35,8 @@ public class VakantieHuisTests {
 
     @Test
     public void verschillendeHuizenToevoegen() {
-        vh1 = new Vakantiehuis("Huis1", "A", "30m2", 1);
-        vh3 = new Vakantiehuis("Huis2", "B", "40m2", 2);
+        vh1 = new Vakantiehuis("Huis1", "A", "30m2", 1, "");
+        vh3 = new Vakantiehuis("Huis2", "B", "40m2", 2, "");
         Vakantiehuis.addHuis(vh1);
         Vakantiehuis.addHuis(vh3);
         assertEquals(3, Vakantiehuis.getAlleHuizen().size()); //Eerder huis is al toegevoegd
@@ -44,7 +44,7 @@ public class VakantieHuisTests {
 
     @Test
     public void correcteToString() {
-        vh1 = new Vakantiehuis("Huis1", "A", "30m2", 1);
+        vh1 = new Vakantiehuis("Huis1", "A", "30m2", 1, "");
         assertEquals("Vakantiehuis{naam='Huis1', adres='A', woonOppervlakte='30m2', status='1'}", vh1.toString());
     }
 

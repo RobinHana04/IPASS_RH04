@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/login.css">
+    <script type="module" src="../view/loginForm.js"></script>
+    <title>Log in om verder te gaan</title>
+
+</head>
+<body>
+<main>
+    <form>
+        <h1>Inloggen</h1>
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" id="uname" name="username" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" id="psw" name="password" required>
+
+            <button type="submit" id="loginbtn">Login</button>
+        </div>
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="recoverPassword.html">password?</a></span>
+            <section class="errormsg"></section>
+        </div>
+    </form>
+</main>
+</body>
+</html>
