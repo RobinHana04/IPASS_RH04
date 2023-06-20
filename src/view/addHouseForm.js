@@ -30,17 +30,19 @@ function extractHouseFromForm() {
     const formElement = document.querySelector('form');
 
     const naamInput = formElement.querySelector('input[name="naam"]');
+    let imageInput = formElement.querySelector('input[name="foto"]');
     const woonInput = formElement.querySelector('input[name="woonoppervlakte"]');
     const adresInput = formElement.querySelector('input[name="adres"]');
     const bedragInput = formElement.querySelector('input[name="status"]');
+    const filename = imageInput.value.replace(/^.*\\/, "");
 
     const v = new Vakantiehuis({
         adres: adresInput.value,
         woonOppervlakte: woonInput.value,
         status: parseInt(bedragInput.value),
         naam: naamInput.value,
+        image: filename,
     });
-
     console.log(v);
     return v;
 }

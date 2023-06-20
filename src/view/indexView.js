@@ -11,6 +11,11 @@ function renderHouse(house) {
         const nameElement = element.querySelector('h2');
         nameElement.textContent = house.name;
 
+        const imgElement = element.querySelector('img');
+        let imageurl = house.image;
+        let filename = imageurl.replace(/^.*\\/,"");
+        imgElement.setAttribute('src', filename);
+
         const adresElement = element.querySelector('.adres');
         adresElement.textContent = 'Adres: ' + house.adres;
 
@@ -35,11 +40,20 @@ function renderHouse(house) {
     return houseContainer;
 }
 
-function showDialog() {
+function showDialog(event) {
+    const homeKey = event.currentTarget.id;
     const dialog = document.querySelector("#boekingDialog");
-    if (dialog && !dialog.hasAttribute("open")) {
-        dialog.showModal();
-    }
+    const titleElement = dialog.querySelector(".hnbd");
+
+    VakantiehuisService.getHuis(homeKey)
+        .then(home => {
+            titleElement.textContent = home.name;
+
+            dialog.showModal();
+        })
+        .catch(error => {
+            console.error("Error fetching the homes" + error);
+        })
 }
 
 function closeDialog() {

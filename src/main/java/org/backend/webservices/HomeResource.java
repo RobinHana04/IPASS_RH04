@@ -46,7 +46,7 @@ public class HomeResource {
         VacationRental vr = VacationRental.getVacationRental();
         Vakantiehuis selectedHome = vr.getVakantieHuisBijNaam(vRq.naam);
         if (selectedHome == null) {
-            Vakantiehuis v1 = new Vakantiehuis(vRq.naam, vRq.adres, vRq.woonOppervlakte, vRq.status);
+            Vakantiehuis v1 = new Vakantiehuis(vRq.naam, vRq.adres, vRq.woonOppervlakte, vRq.status, vRq.image);
             Vakantiehuis.addHuis(v1);
             vr.addVakantiehuizenVR(v1);
         } else {

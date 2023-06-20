@@ -24,6 +24,11 @@ public class Huurder implements NamedObject, Serializable {
         this.gebruikersnaam = gebruikersnaam;
     }
 
+    public void addBoeking(Boeking b) {
+        if (!getAlleBoekingen().contains(b)) {
+            getAlleBoekingen().add(b);
+        }
+    }
 
     public static ArrayList<Huurder> getAlleHuurders() {
         return alleHuurders;
@@ -33,7 +38,7 @@ public class Huurder implements NamedObject, Serializable {
         Huurder.alleHuurders = alleHuurders;
     }
 
-    public static ArrayList<Boeking> getAlleBoekingen() {
+    public ArrayList<Boeking> getAlleBoekingen() {
         return alleBoekingen;
     }
 

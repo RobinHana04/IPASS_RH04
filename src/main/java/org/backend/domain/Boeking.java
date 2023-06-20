@@ -1,5 +1,7 @@
 package org.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -7,13 +9,13 @@ import java.util.Objects;
 
 public class Boeking implements Serializable {
     private int transactieNr;
+    @JsonIgnore
     private Huurder huurder;
     private LocalDate datumVan;
     private LocalDate datumTot;
     private Vakantiehuis vakantiehuis;
     private static Boeking deBoeking;
-
-    private static ArrayList<Vakantiehuis> alleBoekingen = new ArrayList<>();
+    private static ArrayList<Boeking> alleBoekingen = new ArrayList<>();
 
     public Boeking(Huurder huurder, Vakantiehuis vakantiehuis, LocalDate datumVan, LocalDate datumTot) {
         this.huurder = huurder;
@@ -42,6 +44,11 @@ public class Boeking implements Serializable {
         return datumTot;
     }
 
+    public static void addBoeking(Boeking b) {
+        if (!getAlleBoekingen().contains(b)) {
+            getAlleBoekingen().add(b);
+        }
+    }
 
     public void setDatumTot(LocalDate datumTot) {
         this.datumTot = datumTot;
@@ -63,11 +70,11 @@ public class Boeking implements Serializable {
         this.vakantiehuis = vakantiehuis;
     }
 
-    public static ArrayList<Vakantiehuis> getAlleBoekingen() {
+    public static ArrayList<Boeking> getAlleBoekingen() {
         return alleBoekingen;
     }
 
-    public static void setAlleBoekingen(ArrayList<Vakantiehuis> alleBoekingen) {
+    public static void setAlleBoekingen(ArrayList<Boeking> alleBoekingen) {
         Boeking.alleBoekingen = alleBoekingen;
     }
 

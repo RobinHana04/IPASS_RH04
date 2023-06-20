@@ -22,9 +22,9 @@ public class VerhuurderTests {
         v2 = new Verhuurder("RobinHana");
         v3 = new Verhuurder("TomKemper");
 
-        vh1 = new Vakantiehuis("Huis1", "A", "30m2", 1);
-        vh2 = new Vakantiehuis("Huis1", "A", "30m2", 1);
-        vh3 = new Vakantiehuis("Huis2", "B", "40m2", 2);
+        vh1 = new Vakantiehuis("Huis1", "A", "30m2", 1, "");
+        vh2 = new Vakantiehuis("Huis1", "A", "30m2", 1, "");
+        vh3 = new Vakantiehuis("Huis2", "B", "40m2", 2, "");
     }
 
     @Test
