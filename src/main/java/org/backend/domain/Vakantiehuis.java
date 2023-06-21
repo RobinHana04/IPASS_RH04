@@ -11,8 +11,6 @@ public class Vakantiehuis implements NamedObject, Serializable {
     private int status;
     private String image;
     private static ArrayList<Vakantiehuis> alleHuizen = new ArrayList<>();
-
-    private static ArrayList<Boeking> alleBoekingen = new ArrayList<>();
     private static Vakantiehuis hetVakantiehuis;
     private Verhuurder verhuurder;
 
@@ -75,14 +73,6 @@ public class Vakantiehuis implements NamedObject, Serializable {
 
     public String getWoonOppervlakte() {
         return woonOppervlakte;
-    }
-
-    public static ArrayList<Boeking> getAlleBoekingen() {
-        return alleBoekingen;
-    }
-
-    public static void setAlleBoekingen(ArrayList<Boeking> alleBoekingen) {
-        Vakantiehuis.alleBoekingen = alleBoekingen;
     }
 
     public Verhuurder getVerhuurder() {

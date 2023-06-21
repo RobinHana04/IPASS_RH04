@@ -36,7 +36,6 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                 System.out.println("Invalid JWT, processing as guest!");
             }
         }
-
         requestCtx.setSecurityContext(msc);
     }
 }

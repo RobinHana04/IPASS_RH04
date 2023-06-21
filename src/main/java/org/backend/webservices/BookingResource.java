@@ -1,11 +1,10 @@
 package org.backend.webservices;
 
 import org.backend.domain.Boeking;
+import org.backend.requests.BoekingRequest;
 import org.backend.requests.VacationRental;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.AbstractMap;
@@ -24,6 +23,23 @@ public class BookingResource {
         } else {
             return Response.ok(ab).build();
         }
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addBooking(BoekingRequest bkr) {
+        VacationRental vr = VacationRental.getVacationRental();
+        List<Boeking> ab = vr.getBoekingenVR();
+        if (ab == null) {
+            var error = new AbstractMap.SimpleEntry<>("error", "Boekingen lijst is null");
+            return Response.status(409).entity(error).build();
+        } else {
+            Boeking b1 = new Boeking(bkr.huurder, bkr.vakantiehuis, bkr.datumVan, bkr.datumTot);
+            Boeking.getAlleBoekingen().add(b1);
+            vr.addBoekingenVR(b1);
+        }
+        return Response.ok(ab).build();
     }
 }
 

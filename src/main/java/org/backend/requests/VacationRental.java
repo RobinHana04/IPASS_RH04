@@ -1,6 +1,7 @@
 package org.backend.requests;
 
 import org.backend.domain.*;
+import org.backend.security.Username;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,6 +16,21 @@ public class VacationRental implements Serializable {
     private List<Verhuurder> verhuurdersVR = new ArrayList<>();
     private List<Huurder> huurdersVR = new ArrayList<>();
     private List<Boeking> BoekingenVR = new ArrayList<>();
+    private List<Username> UsernamesVR = new ArrayList<>();
+
+    public List<Username> getUsernamesVR() {
+        return UsernamesVR;
+    }
+
+    public void setUsernamesVR(List<Username> usernamesVR) {
+        UsernamesVR = usernamesVR;
+    }
+
+    public void addUsername(Username un) {
+        if (!getUsernamesVR().contains(un)) {
+            getUsernamesVR().add(un);
+        }
+    }
 
     private static Predicate<NamedObject> hasName(String name) {
         return e -> e.getName().equals(name);

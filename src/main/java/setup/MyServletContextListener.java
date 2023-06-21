@@ -4,6 +4,7 @@ import Persistence.PersistenceManager;
 import org.backend.domain.Boeking;
 import org.backend.domain.Huurder;
 import org.backend.domain.Vakantiehuis;
+import org.backend.domain.Verhuurder;
 import org.backend.requests.VacationRental;
 import org.backend.security.MyUser;
 
@@ -27,7 +28,12 @@ public class MyServletContextListener implements ServletContextListener {
             MyUser.createUser("Joe", "password", "user");
             PersistenceManager.loadVacationRentalFromFile();
 
-            Huurder h1 = new Huurder("RobinHana04");
+            Huurder h1 = new Huurder("Robin");
+            Huurder h2 = new Huurder("Joe");
+
+            Verhuurder vh1 = new Verhuurder("Max");
+            Verhuurder vh2 = new Verhuurder("Gerard");
+            
             Vakantiehuis v1 = new Vakantiehuis("Huisje 11", "Victoriameer 111", "50m2", 500, "");
             Boeking b1 = new Boeking(h1, v1, d, dPlusOne);
 
