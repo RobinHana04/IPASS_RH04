@@ -4,6 +4,7 @@ import Persistence.PersistenceManager;
 import org.backend.domain.Boeking;
 import org.backend.domain.Huurder;
 import org.backend.domain.Vakantiehuis;
+import org.backend.domain.Verhuurder;
 import org.backend.requests.VacationRental;
 import org.backend.security.MyUser;
 
@@ -27,20 +28,37 @@ public class MyServletContextListener implements ServletContextListener {
             MyUser.createUser("Joe", "password", "user");
             PersistenceManager.loadVacationRentalFromFile();
 
-            Huurder h1 = new Huurder("RobinHana04");
+            Huurder h1 = new Huurder("Robin");
+            Huurder h2 = new Huurder("Max");
+
+            Verhuurder vh1 = new Verhuurder("Max");
+            Verhuurder vh2 = new Verhuurder("Gerard");
+            
             Vakantiehuis v1 = new Vakantiehuis("Huisje 11", "Victoriameer 111", "50m2", 500, "");
+            Vakantiehuis v2 = new Vakantiehuis("Huisje 12", "Victoriameer 113", "51m2", 500, "");
+
             Boeking b1 = new Boeking(h1, v1, d, dPlusOne);
+            Boeking b2 = new Boeking(h2, v2, d, dPlusOne);
+
 
             Vakantiehuis.getAlleHuizen().add(v1);
             VacationRental.getVacationRental().addVakantiehuizenVR(v1);
 
-            Boeking.getAlleBoekingen().add(b1);
+            Boeking.addBoeking(b1);
+            Boeking.addBoeking(b2);
             VacationRental.getVacationRental().addBoekingenVR(b1);
+
+            VacationRental.getVacationRental().addBoekingenVR(b2);
+
 
             Huurder.getAlleHuurders().add(h1);
             VacationRental.getVacationRental().addHuurdersVR(h1);
 
-            h1.addBoeking(b1);
+            Huurder.getAlleHuurders().add(h2);
+            VacationRental.getVacationRental().addHuurdersVR(h2);
+
+          h1.addBoeking(b1);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {

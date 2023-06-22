@@ -82,11 +82,6 @@ main {
     border-radius: 15px;
 }
 
-#boekingDialog {
-    margin: auto;
-    width: 50%;
-}
-
 .container {
     display: grid;
     grid-template-rows: 1fr;
@@ -97,7 +92,7 @@ main {
     text-align: center;
 }
 
-.homes {
+.boekingen {
     background-color: #333;
 }
 
@@ -147,61 +142,4 @@ footer {
 
 .house-container:nth-child(even) {
     background-color: black;
-}
-
-#boekingDialog {
-    background-color: rgb(59, 61, 57);
-    color: rgb(3, 207, 252);
-}
-
-#boekingDialog h2 {
-    text-align: center;
-}
-
-#boekingDialog form {
-    padding: 20px;
-}
-
-#boekingDialog label {
-    margin-top: 20px;
-    display: block;
-    margin-bottom: 2px;
-}
-
-#boekingDialog input[type="date"] {
-    width: 100%;
-    padding: 5px;
-}
-
-#boekingDialog #submitBtn {
-    margin-top: 5px;
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-#boekingDialog #closeDialogButton {
-    margin-top: 5px;
-    background-color: red;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-.error {
-    border-color: red;
-    border-width: 2px;
-    text-align: center;
-}
-
-.errormsg {
-    margin: 1rem;
-    color: red;
-    font-weight: bold;
-    font-size: x-large;
-    text-align: center;
 }

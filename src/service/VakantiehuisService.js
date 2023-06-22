@@ -71,4 +71,30 @@ export default class VakantiehuisService {
             });
     }
 
+    static checkIfHuisHasBooking(huis) {
+        const encodedHuis = encodeURIComponent(huis);
+        const url = `${baseURL}/restservices/homes/booking/${encodedHuis}`;
+        console.log(url);
+        console.log("AA");
+        return fetch(url)
+            .then(response => {
+                console.log("RESPONSE:", response);
+                if (!response.ok) {
+                    console.log("RESPONSE NOT OK");
+                    throw new Error(response.status);
+                } else {
+                    return response.json();
+                }
+            })
+            .catch(error => {
+                console.log("ERROR:", error);
+                throw error;
+            });
+    }
+
+
+
+
+
+
 }

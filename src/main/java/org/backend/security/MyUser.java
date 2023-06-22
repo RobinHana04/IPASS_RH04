@@ -1,5 +1,7 @@
 package org.backend.security;
 
+import org.backend.requests.VacationRental;
+
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +13,10 @@ public class MyUser implements Principal {
 
     public static String validateLogin(String username, String password){
         System.out.println("Validating login for username: " + username + ", password: " + password);
+        Username u1 = new Username(username);
+        VacationRental vr = VacationRental.getVacationRental();
+        vr.getUsernamesVR().clear();
+        vr.addUsername(u1);
 
         String role = null;
         for(MyUser user : allUsers){
@@ -32,6 +38,7 @@ public class MyUser implements Principal {
     public static MyUser getUserByName(String username){
         return allUsers.stream().filter(user -> user.username.equals(username)).findFirst().orElse(null);
     }
+
     @Override
     public String getName() {
         return username;

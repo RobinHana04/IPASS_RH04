@@ -1,5 +1,6 @@
 package org.backend.webservices;
 
+import org.backend.domain.Boeking;
 import org.backend.domain.Vakantiehuis;
 import org.backend.requests.VacationRental;
 import org.backend.requests.VakantiehuisRequest;
@@ -7,8 +8,7 @@ import org.backend.requests.VakantiehuisRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.AbstractMap;
-import java.util.List;
+import java.util.*;
 
 @Path("homes")
 public class HomeResource {
@@ -74,5 +74,27 @@ public class HomeResource {
             return Response.ok(removedVh).build();
         }
     }
+
+    @GET
+    @Path("booking/{name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response CheckIfHomeHasBooking(@PathParam("name") String HomeNaam) {
+        VacationRental vr = VacationRental.getVacationRental();
+        List<Boeking> allBookings = vr.getBoekingenVR();
+        List<Boeking> HomeWithBooking = new ArrayList<>();
+
+        if (allBookings == null || allBookings.isEmpty()) {
+            return Response.ok(Collections.emptyList()).build(); // Return an empty JSON array
+        } else {
+            for (Boeking b : allBookings) {
+                if (Objects.equals(b.getVakantiehuis().getName(), HomeNaam)) {
+                    HomeWithBooking.add(b);
+                }
+            }
+        }
+
+        return Response.ok(HomeWithBooking).build();
+    }
+
 
 }
