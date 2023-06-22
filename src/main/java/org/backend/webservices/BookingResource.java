@@ -36,7 +36,6 @@ public class BookingResource {
             return Response.status(409).entity(error).build();
         } else {
             Boeking b1 = new Boeking(bkr.huurder, bkr.vakantiehuis, bkr.datumVan, bkr.datumTot);
-            Boeking.getAlleBoekingen().add(b1);
             vr.addBoekingenVR(b1);
         }
         return Response.ok(ab).build();

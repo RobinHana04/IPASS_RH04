@@ -8,10 +8,7 @@ import org.backend.requests.VakantiehuisRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Path("homes")
 public class HomeResource {
@@ -85,17 +82,19 @@ public class HomeResource {
         VacationRental vr = VacationRental.getVacationRental();
         List<Boeking> allBookings = vr.getBoekingenVR();
         List<Boeking> HomeWithBooking = new ArrayList<>();
-        if(allBookings == null || allBookings.isEmpty()) {
-            var error = new AbstractMap.SimpleEntry<>("error", "Er zijn geen boekingen, vul de lijst met data");
-            return Response.status(204).entity(error).build();
+
+        if (allBookings == null || allBookings.isEmpty()) {
+            return Response.ok(Collections.emptyList()).build(); // Return an empty JSON array
         } else {
-            for(Boeking b : allBookings) {
-                if(Objects.equals(b.getVakantiehuis().getName(), HomeNaam)) {
+            for (Boeking b : allBookings) {
+                if (Objects.equals(b.getVakantiehuis().getName(), HomeNaam)) {
                     HomeWithBooking.add(b);
                 }
             }
         }
+
         return Response.ok(HomeWithBooking).build();
     }
+
 
 }

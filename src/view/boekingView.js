@@ -1,6 +1,7 @@
-import HuurderService from "../service/HuurderService";
-import Huurder from "../model/Huurder";
-import MyUser from "../model/MyUser";
+import HuurderService from "../service/HuurderService.js";
+import Huurder from "../model/Huurder.js";
+import MyUser from "../model/MyUser.js";
+import BoekingService from "../service/BoekingService.js";
 
 function showError(error) {
     const errorMsg = document.querySelector('.errormsg');
@@ -19,10 +20,10 @@ function renderBoeking(boeking) {
         const nameElement = element.querySelector('h2');
         nameElement.textContent = boeking.vakantiehuis.name;
 
-        const imgElement = element.querySelector('img');
-        let imageurl = boeking.vakantiehuis.image;
-        let filename = imageurl.replace(/^.*\\/,"");
-        imgElement.setAttribute('src', filename);
+        // const imgElement = element.querySelector('img');
+        // let imageurl = boeking.vakantiehuis.image;
+        // let filename = imageurl.replace(/^.*\\/,"");
+        // imgElement.setAttribute('src', filename);
 
         const adresElement = element.querySelector('.adres');
         adresElement.textContent = 'Adres: ' + boeking.vakantiehuis.adres;
@@ -53,14 +54,15 @@ function renderBoeking(boeking) {
 
 function render() {
     const allBoekingenElement = document.querySelector(".boekingen");
-    const huurder = new Huurder(MyUser.username);
-    return HuurderService.getBoekingenVanHuurder(huurder)
+    BoekingService.getCurrentHuurder()
+        .then(currentHuurder => {
+            return HuurderService.getBoekingenVanHuurder(currentHuurder);
+        })
         .then(boekingen => {
             allBoekingenElement.innerHTML = '';
             boekingen.forEach(boeking => {
                 const boekingElement = renderBoeking(boeking);
-               allBoekingenElement.appendChild(boekingElement);
-
+                allBoekingenElement.appendChild(boekingElement);
             });
         })
         .catch(error => {

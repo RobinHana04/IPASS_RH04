@@ -15,8 +15,8 @@ public class MyUser implements Principal {
         System.out.println("Validating login for username: " + username + ", password: " + password);
         Username u1 = new Username(username);
         VacationRental vr = VacationRental.getVacationRental();
+        vr.getUsernamesVR().clear();
         vr.addUsername(u1);
-        System.out.println("ALLE USERNAMES:" + vr.getUsernamesVR());
 
         String role = null;
         for(MyUser user : allUsers){

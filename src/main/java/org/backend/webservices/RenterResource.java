@@ -1,12 +1,11 @@
 package org.backend.webservices;
 
 import org.backend.domain.Boeking;
+import org.backend.domain.Huurder;
+import org.backend.requests.HuurderRequest;
 import org.backend.requests.VacationRental;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.AbstractMap;
@@ -35,5 +34,38 @@ public class RenterResource {
         } else {
             return Response.ok(bookings).build();
         }
+    }
+
+    @GET
+    @Path("/search/{name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getSingleRenter(@PathParam("name") String name) {
+        VacationRental vr = VacationRental.getVacationRental();
+        Huurder selectedHuurder = vr.getHuurderBijNaam(name);
+
+        if (selectedHuurder == null) {
+            var error = new AbstractMap.SimpleEntry<>("error", "Deze huurder bestaat niet");
+            return Response.status(409).entity(error).build();
+        }
+        return Response.ok(selectedHuurder).build();
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addRenter(HuurderRequest hRq) {
+        VacationRental vr = VacationRental.getVacationRental();
+        Huurder selectedHuurder = vr.getHuurderBijNaam(hRq.gebruikersnaam);
+        if (selectedHuurder == null) {
+            Huurder h1 = new Huurder(hRq.gebruikersnaam);
+            Huurder.addHuurder(h1);
+            vr.addHuurdersVR(h1);
+        } else {
+            var error = new AbstractMap.SimpleEntry<>("error", "Huurder bestaat al of kon niet gemaakt worden.");
+            return Response.status(409).entity(error)
+                    .header("Access-Control-Allow-Origin", "*").build();
+        }
+    return Response.ok(vr.getHuurderBijNaam(hRq.gebruikersnaam)).header("Access-Control-Allow-Origin", "*") // Add the CORS header to allow requests from all origins
+            .build();
     }
 }

@@ -1,5 +1,5 @@
 package org.backend.requests;
 
-public class VerhuurderRequest  {
+public class HuurderRequest {
     public String gebruikersnaam;
 }

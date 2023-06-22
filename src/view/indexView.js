@@ -1,4 +1,6 @@
 import VakantiehuisService from "../service/VakantiehuisService.js";
+import Boeking from "../model/Boeking.js";
+import BoekingService from "../service/BoekingService.js";
 
 function showError(error) {
     const errorMsg = document.querySelector('.errormsg');
@@ -50,10 +52,11 @@ function showDialog(event) {
     const homeKey = event.currentTarget.id;
     const dialog = document.querySelector("#boekingDialog");
     const titleElement = dialog.querySelector(".hnbd");
-
+    console.log(homeKey);
     VakantiehuisService.checkIfHuisHasBooking(homeKey)
         .then(booking => {
-            if (booking) {
+            console.log(booking);
+            if (booking && booking.length > 0) {
                 showError(new Error("House is already booked"));
             } else {
                 VakantiehuisService.getHuis(homeKey)
@@ -62,12 +65,12 @@ function showDialog(event) {
                         dialog.showModal();
                     })
                     .catch(error => {
-                        showError(new Error("Error fetching the home: " + error));
+                        showError(error);
                     });
             }
         })
         .catch(error => {
-            showError(new Error("Error checking bookings: " + error));
+            showError(error);
         });
 }
 
@@ -80,45 +83,44 @@ function showDialog(event) {
         dialog.close();
     });
 }
-// function extractBookingFromDialog() {
-//     const dialogElement = document.querySelector("#boekingDialog");
-//     const nameElementOfHome = dialogElement.querySelector(".hnbd");
-//     const datumVanElement = dialogElement.querySelector('input[name="datumVan"]');
-//     const datumTotElement = dialogElement.querySelector('input[name="datumTot"]');
-//
-//     return new Promise((resolve, reject) => {
-//         VakantiehuisService.getHuis(nameElementOfHome)
-//             .then(huis => {
-//                 const booking = new Boeking({
-//                     transactieNr: null,
-//                     datumVan: datumVanElement.value,
-//                     datumTot: datumTotElement.value,
-//                     vakantiehuis: huis,
-//                     huurder: null,
-//                 });
-//                 resolve(booking);
-//             })
-//             .catch(error => {
-//                 console.error('Error:', error);
-//                 reject(error);
-//             });
-//     });
-// }
+async function extractBookingFromDialog() {
+    const dialogElement = document.querySelector("#boekingDialog");
+    const nameElementOfHome = dialogElement.querySelector(".hnbd");
+    const datumVanElement = dialogElement.querySelector('input[name="datumVan"]');
+    const datumTotElement = dialogElement.querySelector('input[name="datumTot"]');
+
+    try {
+        const huis = await VakantiehuisService.getHuis(nameElementOfHome);
+        const currentHuurder = await BoekingService.getCurrentHuurder();
+
+        return new Boeking({
+            transactieNr: 1,
+            datumVan: datumVanElement.value,
+            datumTot: datumTotElement.value,
+            vakantiehuis: huis,
+            huurder: currentHuurder.huurder,
+        });
+    } catch (error) {
+        console.error('Error:', error);
+        throw error;
+    }
+}
 
 
-// async function dialogBookingSubmit(event) {
-//     event.preventDefault(); // Prevent the default form submission behavior
-//
-//     try {
-//         const bookingData = await extractBookingFromDialog();
-//         const booking = new Boeking(bookingData); // Instantiate a new Booking instance
-//         await BoekingService.addBoeking(booking);
-//         window.location.href = '../page/mijnBoekingen.html'; // Redirect to server URL on success
-//     } catch (error) {
-//         console.error('Error:', error);
-//         showError(error);
-//     }
-// }
+
+async function dialogBookingSubmit(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    try {
+        const bookingData = await extractBookingFromDialog();
+        const booking = new Boeking(bookingData); // Instantiate a new Booking instance
+        await BoekingService.addBoeking(booking);
+        window.location.href = '../page/mijnBoekingen.html'; // Redirect to server URL on success
+    } catch (error) {
+        console.error('Error:', error);
+        showError(error);
+    }
+}
 
 function render() {
     const allhousesElement = document.querySelector(".homes");
@@ -137,10 +139,13 @@ function render() {
         });
 }
 const dialogCloseBtn = document.querySelector("#boekingDialog #closeDialogButton");
+const dialogSubmitBtn = document.querySelector("#boekingDialog #submitBtn")
 document.addEventListener(dialogCloseBtn, closeDialog);
+document.addEventListener(dialogSubmitBtn, dialogBookingSubmit);
 
 document.addEventListener('DOMContentLoaded', async () => {
     window.onload = await render();
 
 });
+
 

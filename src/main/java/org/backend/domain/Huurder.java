@@ -7,13 +7,22 @@ import java.util.Objects;
 public class Huurder implements NamedObject, Serializable {
     private String gebruikersnaam;
     private static ArrayList<Huurder> alleHuurders = new ArrayList<>();
-
-    private static ArrayList<Boeking> alleBoekingen = new ArrayList<>();
+    private ArrayList<Boeking> alleBoekingen = new ArrayList<>();
     private static Huurder deHuurder;
 
 
     public Huurder(String gebruikersnaam) {
         this.gebruikersnaam = gebruikersnaam;
+    }
+
+    public static Huurder getHuurderBijNaam(String naam){
+        return getAlleHuurders().stream().filter(huurder -> huurder.getName().equals(naam)).findFirst().orElse(null);
+    }
+
+    public static void addHuurder(Huurder h1) {
+        if (!getAlleHuurders().contains(h1)) {
+            getAlleHuurders().add(h1);
+        }
     }
 
     public String getGebruikersnaam() {
@@ -26,7 +35,7 @@ public class Huurder implements NamedObject, Serializable {
 
     public void addBoeking(Boeking b) {
         if (!getAlleBoekingen().contains(b)) {
-            getAlleBoekingen().add(b);
+            getAlleBoekingen().add(b);// Associate the booking with the current Huurder
         }
     }
 
@@ -42,8 +51,8 @@ public class Huurder implements NamedObject, Serializable {
         return alleBoekingen;
     }
 
-    public static void setAlleBoekingen(ArrayList<Boeking> alleBoekingen) {
-        Huurder.alleBoekingen = alleBoekingen;
+    public void setAlleBoekingen(ArrayList<Boeking> alleB) {
+        alleBoekingen = alleB;
     }
 
     public void boekingToevoegen(Boeking b) {
