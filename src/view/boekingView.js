@@ -1,11 +1,12 @@
 import HuurderService from "../service/HuurderService.js";
-import Huurder from "../model/Huurder.js";
-import MyUser from "../model/MyUser.js";
 import BoekingService from "../service/BoekingService.js";
+import Boeking from "../model/Boeking.js";
 
+const template = document.querySelector(".container .boekingen")
+console.log(template);
 function showError(error) {
     const errorMsg = document.querySelector('.errormsg');
-    errorMsg.textContent = 'Er is iets fout gegaan!';
+    errorMsg.textContent = 'Jouw boekingen zijn leeg!';
     throw error;
 }
 
@@ -19,11 +20,6 @@ function renderBoeking(boeking) {
    boekingElements.forEach((element) => {
         const nameElement = element.querySelector('h2');
         nameElement.textContent = boeking.vakantiehuis.name;
-
-        // const imgElement = element.querySelector('img');
-        // let imageurl = boeking.vakantiehuis.image;
-        // let filename = imageurl.replace(/^.*\\/,"");
-        // imgElement.setAttribute('src', filename);
 
         const adresElement = element.querySelector('.adres');
         adresElement.textContent = 'Adres: ' + boeking.vakantiehuis.adres;
@@ -67,9 +63,52 @@ function render() {
         })
         .catch(error => {
             showError(error);
+
         });
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    window.onload = await render();
-});
+    await render();
+    function closeDialog() {
+        const dialog = document.querySelector("#annuleerDialog");
+        const cancelButton = document.querySelector("#closeDialogButton");
+
+        cancelButton.addEventListener("click", function(event) {
+            event.preventDefault();
+            dialog.close();
+        });
+    }
+
+    async function dialogBookingCancellationSubmit(event) {
+        event.preventDefault();
+
+        // Get the house name from the dialog
+        const nameElement = document.querySelector("#annuleerDialog h2");
+        const houseName = nameElement.textContent;
+
+        try {
+            await BoekingService.deleteBoeking(houseName);
+            window.location.href = '../page/index.html';
+        } catch (error) {
+            showError(error);
+        }
+    }
+
+    function showDialog(event) {
+        const dialog = document.querySelector("#annuleerDialog");
+        const houseName = event.target.closest('.boeking').querySelector('h2').textContent;
+        const nameElement = dialog.querySelector('h2');
+        nameElement.textContent = houseName;
+        dialog.showModal();
+    }
+
+    const annuleerDialog = document.querySelector('#annuleerDialog');
+    const annuleerButton = document.querySelector('.container');
+    const submitButton = document.querySelector('#submitBtn');
+
+    if (annuleerButton) {
+        annuleerButton.addEventListener('click', showDialog);
+        submitButton.addEventListener('click', dialogBookingCancellationSubmit);
+        annuleerDialog.addEventListener('click', closeDialog);
+    }
+})

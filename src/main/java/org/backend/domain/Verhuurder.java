@@ -7,7 +7,8 @@ import java.util.Objects;
 public class Verhuurder implements NamedObject, Serializable {
     private String gebruikersnaam;
     private static ArrayList<Verhuurder> alleVerhuurders = new ArrayList<>();
-    private static ArrayList<Vakantiehuis> alleHuizen = new ArrayList<>();
+
+    private ArrayList<Vakantiehuis> alleHuizen = new ArrayList<>();
     private static Verhuurder deVerhuurder;
 
     public Verhuurder(String gebruikersnaam) {
@@ -36,12 +37,12 @@ public class Verhuurder implements NamedObject, Serializable {
         this.gebruikersnaam = gebruikersnaam;
     }
 
-    public static ArrayList<Vakantiehuis> getAlleHuizen() {
+    public ArrayList<Vakantiehuis> getAlleHuizen() {
         return alleHuizen;
     }
 
-    public static void setAlleHuizen(ArrayList<Vakantiehuis> alleHuizen) {
-        Verhuurder.alleHuizen = alleHuizen;
+    public void setAlleHuizen(ArrayList<Vakantiehuis> alleHuizen) {
+        this.alleHuizen = alleHuizen;
     }
 
     public void voegHuisToe(Vakantiehuis vh) {

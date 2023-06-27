@@ -32,14 +32,6 @@ public class VerhuurderTests {
         assertEquals(v1, v2);
     }
 
-    @Test
-    public void ReedsToegevoegdHuisBijIemandAndersToevoegen() {
-        v1 = new Verhuurder("RobinHana");
-        v2 = new Verhuurder("RobinHana2");
-        v1.voegHuisToe(vh2);
-        v2.voegHuisToe(vh2);
-        assertEquals(1, Verhuurder.getAlleHuizen().size());
-    }
 
     @Test
     public void DezelfdeVerhuurdersInLijst() {

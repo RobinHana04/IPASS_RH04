@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mijn Boekingen beheren</title>
-    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/mijnBoekingen.css">
     <script type="module" src="../view/boekingView.js"></script>
 
 </head>
@@ -40,11 +40,21 @@
                     <p class="bedrag">bedrag</p>
                     <p class="datumVan"></p>
                     <p class="datumTot"></p>
-                    <input id="annuleerBoekingBtn" type="submit" value="Annuleer Boeking">
+                    <input id="annuleerBoekingBtn" type="submit" value="Annuleer">
                 </article>
             </template>
         </div>
     </div>
+
+    <dialog id="annuleerDialog">
+        <h2 class="hnbd">Home Name</h2>
+        <form>
+            <h2>Weet je zeker dat je deze boeking wilt annuleren?</h2>
+            <button id="submitBtn" type="submit">Submit</button>
+            <button id="closeDialogButton" type="button">Cancel</button>
+        </form>
+    </dialog>
+
 </main>
 <section class="errormsg"></section>
 </body>

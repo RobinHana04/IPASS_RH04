@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Boeking implements Serializable {
-    private int transactieNr;
     @JsonIgnore
     private Huurder huurder;
     private LocalDate datumVan;
@@ -78,20 +77,12 @@ public class Boeking implements Serializable {
         Boeking.alleBoekingen = alleBoekingen;
     }
 
-    public int getTransactieNr() {
-        return transactieNr;
-    }
-
-    public void setTransactieNr(int transactieNr) {
-        this.transactieNr = transactieNr;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Boeking)) return false;
         Boeking boeking = (Boeking) o;
-        return transactieNr == boeking.transactieNr && Objects.equals(huurder, boeking.huurder) && Objects.equals(datumVan, boeking.datumVan) && Objects.equals(datumTot, boeking.datumTot) && Objects.equals(vakantiehuis, boeking.vakantiehuis);
+        return Objects.equals(huurder, boeking.huurder) && Objects.equals(datumVan, boeking.datumVan) && Objects.equals(datumTot, boeking.datumTot) && Objects.equals(vakantiehuis, boeking.vakantiehuis);
     }
 
     @Override
@@ -100,7 +91,6 @@ public class Boeking implements Serializable {
                 "huurder=" + huurder +
                 ", datumVan=" + datumVan +
                 ", datumTot=" + datumTot +
-                ", transactieNr=" + transactieNr +
                 '}';
     }
 }

@@ -8,6 +8,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.AbstractMap;
+import java.util.ArrayList;
 import java.util.List;
 
 @Path("/booking")
@@ -40,5 +41,27 @@ public class BookingResource {
         }
         return Response.ok(ab).build();
     }
+
+    @DELETE
+    @Path("{name}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response deleteBooking(@PathParam("name") String naam)  {
+        VacationRental vr = VacationRental.getVacationRental();
+        List<Boeking> removedBoeking = new ArrayList<>();
+        List<Boeking> alleBoekingen = vr.getBoekingenVR();
+        if(naam == null) {
+            var error = new AbstractMap.SimpleEntry<>("error", "Naam van vakantiehuis klopt niet, of is null");
+            return Response.status(409).entity(error).build();
+        } else {
+            for(Boeking b : alleBoekingen) {
+                if (b.getVakantiehuis().getName().equals(naam)) {
+                    alleBoekingen.remove(b);
+                    removedBoeking.add(b);
+                }
+            }
+        }
+        return Response.ok(removedBoeking).build();
+    }
+
 }
 

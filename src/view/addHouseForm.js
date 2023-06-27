@@ -2,7 +2,6 @@ import Vakantiehuis from "../model/Vakantiehuis.js";
 import VakantiehuisService from '../service/VakantiehuisService.js';
 
 const form = document.querySelector('form');
-const naamInput = form.querySelector('#naam');
 
 function showError(error) {
     const errorMsg = document.querySelector('.errormsg');
@@ -14,53 +13,43 @@ function showError(error) {
     } else {
         errorMsg.textContent = 'Oeps, er is iets misgegaan!';
     }
-
     throw error;
 }
 
-function clearError(event) {
-    const naamInput = document.querySelector('#naam');
-    const errorMsg = document.querySelector('.errormsg');
+    function extractHouseFromForm() {
+        const formElement = document.querySelector('form');
 
-    naamInput.addEventListener('input', () => {
-        errorMsg.textContent = ''; // Clear the error message
-    });
-}
-function extractHouseFromForm() {
-    const formElement = document.querySelector('form');
+        const naamInput = formElement.querySelector('input[name="naam"]');
+        let imageInput = formElement.querySelector('input[name="foto"]');
+        const woonInput = formElement.querySelector('input[name="woonoppervlakte"]');
+        const adresInput = formElement.querySelector('input[name="adres"]');
+        const bedragInput = formElement.querySelector('input[name="status"]');
+        const filename = imageInput.value.replace(/^.*\\/, "");
 
-    const naamInput = formElement.querySelector('input[name="naam"]');
-    let imageInput = formElement.querySelector('input[name="foto"]');
-    const woonInput = formElement.querySelector('input[name="woonoppervlakte"]');
-    const adresInput = formElement.querySelector('input[name="adres"]');
-    const bedragInput = formElement.querySelector('input[name="status"]');
-    const filename = imageInput.value.replace(/^.*\\/, "");
-
-    const v = new Vakantiehuis({
-        adres: adresInput.value,
-        woonOppervlakte: woonInput.value,
-        status: parseInt(bedragInput.value),
-        naam: naamInput.value,
-        image: filename,
-    });
-    console.log(v);
-    return v;
-}
-
-function formSubmit(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
-
-    const houseData = extractHouseFromForm();
-    const house = new Vakantiehuis(houseData); // Instantiate a new House instance
-    VakantiehuisService.addHuis(house)
-        .then(() => {
-            window.location.href = '../page/index.html'; // Redirect to server URL on success
-        })
-        .catch(error => {
-            console.log('Error:', error);
-            showError(error);
+        const v = new Vakantiehuis({
+            adres: adresInput.value,
+            woonOppervlakte: woonInput.value,
+            status: parseInt(bedragInput.value),
+            naam: naamInput.value,
+            image: filename,
         });
-}
+        return v;
+    }
 
-naamInput.addEventListener('input', clearError);
-form.addEventListener('submit', formSubmit);
+    function formSubmit(event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+
+        const houseData = extractHouseFromForm();
+        const house = new Vakantiehuis(houseData); // Instantiate a new House instance
+        VakantiehuisService.addHuis(house)
+            .then(() => {
+                window.location.href = '../page/index.html'; // Redirect to server URL on success
+            })
+            .catch(error => {
+                console.log('Error:', error);
+                showError(error);
+            });
+    }
+
+    form.addEventListener('submit', formSubmit);
+

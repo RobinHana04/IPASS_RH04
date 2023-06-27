@@ -2,7 +2,6 @@ import { baseURL } from '../view/backendserverconfig.js';
 
 export default class LoginService {
     static login(user) {
-        console.log("login function started");
         return fetch(`${baseURL}/restservices/authentication`, {
             method: "POST",
             headers: {

@@ -20,7 +20,6 @@ public class RenterResource {
     public Response getBookingsForRenter(@PathParam("renter") String renter) {
         VacationRental vr = VacationRental.getVacationRental();
         List<Boeking> bookings = new ArrayList<>();
-        System.out.println("BOEKINGEN: " + vr.getBoekingenVR());
 
         for (Boeking boeking : vr.getBoekingenVR()) {
             if (boeking.getHuurder().getGebruikersnaam().equals(renter)) {

@@ -139,43 +139,6 @@ footer {
     background-color: black;
 }
 
-#annuleerDialog {
-    background-color: rgb(59, 61, 57);
-    color: rgb(3, 207, 252);
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#annuleerDialog h2 {
-    text-align: center;
-}
-
-#annuleerDialog form {
-    padding: 20px;
-}
-
-#annuleerDialog #submitBtn {
-    margin-top: 5px;
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-#annuleerDialog #closeDialogButton {
-    margin-top: 5px;
-    background-color: red;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
 .error {
     border-color: red;
     border-width: 2px;
