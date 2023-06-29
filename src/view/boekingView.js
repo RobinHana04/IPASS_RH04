@@ -1,9 +1,7 @@
 import HuurderService from "../service/HuurderService.js";
 import BoekingService from "../service/BoekingService.js";
-import Boeking from "../model/Boeking.js";
 
 const template = document.querySelector(".container .boekingen")
-console.log(template);
 function showError(error) {
     const errorMsg = document.querySelector('.errormsg');
     errorMsg.textContent = 'Jouw boekingen zijn leeg!';
@@ -82,7 +80,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function dialogBookingCancellationSubmit(event) {
         event.preventDefault();
 
-        // Get the house name from the dialog
         const nameElement = document.querySelector("#annuleerDialog h2");
         const houseName = nameElement.textContent;
 

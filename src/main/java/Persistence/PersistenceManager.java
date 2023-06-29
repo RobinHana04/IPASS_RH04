@@ -1,11 +1,8 @@
 package Persistence;
 
-import org.backend.domain.Vakantiehuis;
-import org.backend.domain.Verhuurder;
 import org.backend.requests.VacationRental;
 
 import java.io.*;
-import java.util.List;
 
 public class PersistenceManager {
     private static final String filePath = "VacationRental.obj";
@@ -17,23 +14,9 @@ public class PersistenceManager {
             ObjectInputStream ois = new ObjectInputStream(is);
             Object obj = ois.readObject();
 
-            if (obj != null && obj instanceof VacationRental) {
+            if (obj instanceof VacationRental) {
                 VacationRental loadedObj = (VacationRental) obj;
                 VacationRental.setVacationRental(loadedObj);
-
-                List<Vakantiehuis> vakantiehuizen = loadedObj.getVakantiehuizenVR();
-                List<Verhuurder> verhuurders = loadedObj.getAllVerhuurders();
-
-                System.out.println("Vakantiehuizen:");
-                for (Vakantiehuis vakantiehuis : vakantiehuizen) {
-                    System.out.println(vakantiehuis);
-                }
-
-                System.out.println("Verhuurders:");
-                for (Verhuurder verhuurder : verhuurders) {
-                    System.out.println(verhuurder);
-                }
-
                 ois.close();
             }
         } else {
@@ -46,7 +29,6 @@ public class PersistenceManager {
         OutputStream os = new FileOutputStream(file);
         ObjectOutputStream oos = new ObjectOutputStream(os);
         oos.writeObject(vcr);
-        System.out.println("All houses from VacationRental object: " + vcr.getVakantiehuizenVR());
         oos.flush();
         oos.close();
     }

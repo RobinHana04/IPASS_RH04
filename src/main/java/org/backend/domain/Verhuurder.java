@@ -1,5 +1,7 @@
 package org.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -8,7 +10,6 @@ public class Verhuurder implements NamedObject, Serializable {
     private String gebruikersnaam;
     private static ArrayList<Verhuurder> alleVerhuurders = new ArrayList<>();
 
-    private ArrayList<Vakantiehuis> alleHuizen = new ArrayList<>();
     private static Verhuurder deVerhuurder;
 
     public Verhuurder(String gebruikersnaam) {
@@ -25,8 +26,17 @@ public class Verhuurder implements NamedObject, Serializable {
         }
     }
 
+    public Verhuurder() {
+    }
+
     public static void setAlleVerhuurders(ArrayList<Verhuurder> alleVerhuurders) {
         Verhuurder.alleVerhuurders = alleVerhuurders;
+    }
+
+    public static void addVerhuurder(Verhuurder vh1) {
+        if (!getAlleVerhuurders().contains(vh1)) {
+            getAlleVerhuurders().add(vh1);
+        }
     }
 
     public String getGebruikersnaam() {
@@ -35,20 +45,6 @@ public class Verhuurder implements NamedObject, Serializable {
 
     public void setGebruikersnaam(String gebruikersnaam) {
         this.gebruikersnaam = gebruikersnaam;
-    }
-
-    public ArrayList<Vakantiehuis> getAlleHuizen() {
-        return alleHuizen;
-    }
-
-    public void setAlleHuizen(ArrayList<Vakantiehuis> alleHuizen) {
-        this.alleHuizen = alleHuizen;
-    }
-
-    public void voegHuisToe(Vakantiehuis vh) {
-        if(!getAlleHuizen().contains(vh)) {
-            getAlleHuizen().add(vh);
-        }
     }
 
     public static Verhuurder getDeVerhuurder() {
@@ -74,6 +70,7 @@ public class Verhuurder implements NamedObject, Serializable {
                 '}';
     }
 
+    @JsonIgnore
     @Override
     public String getName() {
         return this.gebruikersnaam;

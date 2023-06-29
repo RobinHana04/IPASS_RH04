@@ -12,13 +12,15 @@ public class Vakantiehuis implements NamedObject, Serializable {
     private String image;
     private static ArrayList<Vakantiehuis> alleHuizen = new ArrayList<>();
     private static Vakantiehuis hetVakantiehuis;
+    private Verhuurder verhuurder;
 
-    public Vakantiehuis(String naam, String adres, String woonOppervlakte, int status, String image) {
+    public Vakantiehuis(String naam, String adres, String woonOppervlakte, int status, String image, Verhuurder verhuurder) {
         this.adres = adres;
         this.woonOppervlakte = woonOppervlakte;
         this.status = status;
         this.naam = naam;
         this.image = image;
+        this.verhuurder = verhuurder;
     }
 
     public String getImage() {
@@ -91,6 +93,14 @@ public class Vakantiehuis implements NamedObject, Serializable {
 
     public static void setHetVakantiehuis(Vakantiehuis hetVakantiehuis) {
         Vakantiehuis.hetVakantiehuis = hetVakantiehuis;
+    }
+
+    public Verhuurder getVerhuurder() {
+        return verhuurder;
+    }
+
+    public void setVerhuurder(Verhuurder verhuurder) {
+        this.verhuurder = verhuurder;
     }
 
     public int getStatus() {

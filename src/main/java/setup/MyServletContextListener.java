@@ -24,18 +24,21 @@ public class MyServletContextListener implements ServletContextListener {
             LocalDate d = LocalDate.now();
             LocalDate dPlusOne = d.plusDays(1);
 
-            MyUser.createUser("Robin", "password", "admin");
+            MyUser.createUser("Robin", "password", "user");
             MyUser.createUser("Max", "password", "user");
+            MyUser.createUser("Martijn", "password", "admin");
             PersistenceManager.loadVacationRentalFromFile();
 
             Huurder h1 = new Huurder("Robin");
             Huurder h2 = new Huurder("Max");
+            Huurder h3 = new Huurder("Martijn");
 
             Verhuurder vh1 = new Verhuurder("Robin");
             Verhuurder vh2 = new Verhuurder("Max");
+            Verhuurder vh3 = new Verhuurder("Martijn");
             
-            Vakantiehuis v1 = new Vakantiehuis("Huisje 11", "Victoriameer 111", "50m2", 500, "");
-            Vakantiehuis v2 = new Vakantiehuis("Huisje 12", "Victoriameer 113", "51m2", 500, "");
+            Vakantiehuis v1 = new Vakantiehuis("Huisje 11", "Victoriameer 111", "50m2", 500, "", vh2);
+            Vakantiehuis v2 = new Vakantiehuis("Huisje 12", "Victoriameer 113", "51m2", 500, "", vh1);
 
             Boeking b1 = new Boeking(h1, v1, d, dPlusOne);
 
@@ -54,11 +57,18 @@ public class MyServletContextListener implements ServletContextListener {
             Huurder.getAlleHuurders().add(h2);
             VacationRental.getVacationRental().addHuurdersVR(h2);
 
+            Huurder.getAlleHuurders().add(h3);
+            VacationRental.getVacationRental().addHuurdersVR(h3);
+
             Verhuurder.getAlleVerhuurders().add(vh1);
             VacationRental.getVacationRental().addVerhuurderVR(vh1);
 
             Verhuurder.getAlleVerhuurders().add(vh2);
             VacationRental.getVacationRental().addVerhuurderVR(vh2);
+
+            Verhuurder.getAlleVerhuurders().add(vh3);
+            VacationRental.getVacationRental().addVerhuurderVR(vh3);
+
 
           h1.addBoeking(b1);
 
