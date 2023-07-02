@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vacation Home Rentals</title>
-    <link rel="stylesheet" href="styles/index.css">
-    <script type="module" src="../view/indexView.js"></script>
+    <title>Mijn Boekingen beheren</title>
+    <link rel="stylesheet" href="styles/mijnBoekingen.css">
+    <script type="module" src="../view/boekingView.js"></script>
 
 </head>
 <body>
 <header>
-    <h1>Vacation Home Rentals</h1>
+    <h1>Mijn Boekingen</h1>
     <div class="navbar">
         <div class="dropdown">
             <button class="dropbtn">___
@@ -30,35 +30,31 @@
 <main>
     <div class="container">
         <h1 id="page_title"></h1>
-        <div class="homes"></div>
+        <div class="boekingen"></div>
         <div class="column">
-            <template id="home-template">
-                <article id="HomeName" class="home">
-                    <img src="">
+            <template id="boeking-template">
+                <article id="BoekingName" class="boeking">
                     <h2 class="hn">Home Name</h2>
                     <p class="adres">adres</p>
                     <p class="woonoppervlakte">woonoppervlakte</p>
                     <p class="bedrag">bedrag</p>
-                    <input id="boekBtn" type="submit" value="Boek">
+                    <p class="datumVan"></p>
+                    <p class="datumTot"></p>
+                    <input id="annuleerBoekingBtn" type="submit" value="Annuleer">
                 </article>
             </template>
         </div>
     </div>
 
-    <dialog id="boekingDialog">
+    <dialog id="annuleerDialog">
         <h2 class="hnbd">Home Name</h2>
         <form>
-            <h2>Nieuwe boeking maken</h2>
-            <label for="datumVan">Aankomst Datum:</label>
-            <input type="date" id="datumVan" name="datumVan" required>
-
-            <label for="datumTot">Vertrek Datum:</label>
-            <input type="date" id="datumTot" name="datumTot" required>
-
+            <h2>Weet je zeker dat je deze boeking wilt annuleren?</h2>
             <button id="submitBtn" type="submit">Submit</button>
-            <button id="closeDialogButton">Cancel</button>
+            <button id="closeDialogButton" type="button">Cancel</button>
         </form>
     </dialog>
+
 </main>
 <section class="errormsg"></section>
 </body>

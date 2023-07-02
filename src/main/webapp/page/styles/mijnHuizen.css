@@ -45,7 +45,7 @@
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     z-index: 1;
 }
 
@@ -92,7 +92,7 @@ main {
     text-align: center;
 }
 
-.boekingen {
+.mijnHuizen {
     background-color: #333;
 }
 
@@ -111,24 +111,10 @@ header {
     text-align: center;
 }
 
-#boekBtn {
-    margin-top: 10px;
-    background-color: rgb(59, 61, 57);
-    color: rgb(3, 207, 252);
-    width: 65px;
-    height: 35px;
-    cursor: pointer;
-}
-
 footer {
     background-color: rgb(59, 61, 57);
     padding: 20px;
     text-align: center;
-}
-
-.grid-container {
-    display: grid;
-    padding: 10px;
 }
 
 .house-container {
@@ -142,4 +128,18 @@ footer {
 
 .house-container:nth-child(even) {
     background-color: black;
+}
+
+.error {
+    border-color: red;
+    border-width: 2px;
+    text-align: center;
+}
+
+.errormsg {
+    margin: 1rem;
+    color: red;
+    font-weight: bold;
+    font-size: x-large;
+    text-align: center;
 }

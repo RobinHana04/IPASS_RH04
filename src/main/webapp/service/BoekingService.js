@@ -24,19 +24,15 @@ export default class BoekingService {
                 }
             })
             .then(username => {
-                console.log(username); // Check the value of username
                 const usernameValue = username[0].username; // Extract the username value
-                console.log(usernameValue); // Verify the extracted username value
 
                 // Check if the username corresponds to a Huurder
                 return fetch(`${baseURL}/restservices/renter/search/${usernameValue}`)
                     .then(response => {
-                        console.log(response); // Check the response from the endpoint
                         if (response.ok) {
                             // Huurder exists, retrieve the Huurder object
                             return response.json();
                         } else if (response.status === 404) {
-                            // Huurder does not exist, create a new Huurder object
                             return fetch(`${baseURL}/restservices/renter`, {
                                 method: 'POST',
                                 headers: {
@@ -45,7 +41,6 @@ export default class BoekingService {
                                 body: JSON.stringify({ username: usernameValue }),
                             })
                                 .then(response => {
-                                    console.log(response); // Check the response from the endpoint
                                     if (response.ok) {
                                         return response.json();
                                     } else {
@@ -57,7 +52,6 @@ export default class BoekingService {
                         }
                     })
                     .then(huurder => {
-                        console.log(huurder); // Check the retrieved huurder object
                         return { gebruikersnaam: usernameValue, huurder };
                     });
             });
@@ -82,4 +76,27 @@ export default class BoekingService {
                     return response.json();
                 });
         };
+
+
+    static deleteBoeking(key) {
+        const url = `${baseURL}/restservices/booking/${key}`;
+        const options = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            },
+            body: JSON.stringify(key),
+        };
+
+        return fetch(url, options)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Delete request failed with status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .catch((error) => {
+                throw error;
+            });
+    }
 }

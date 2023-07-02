@@ -91,7 +91,9 @@ public class VacationRental implements Serializable {
     }
 
     public void addVerhuurderVR (Verhuurder verhuurder) {
-        getVerhuurdersVR().add(verhuurder);
+        if(!getVerhuurdersVR().contains(verhuurder)) {
+            getVerhuurdersVR().add(verhuurder);
+        }
     }
 
     public List<Vakantiehuis> getVakantiehuizenVR() {

@@ -28,11 +28,9 @@ function renderHouse(house) {
         adresElement.textContent = 'Adres: ' + house.adres;
 
         const oppervlakteElement = element.querySelector('.woonoppervlakte');
-        console.log(oppervlakteElement);
         oppervlakteElement.textContent = 'WoonOppervlakte (m2): ' + house.woonOppervlakte;
 
         const bedragElement = element.querySelector('.bedrag');
-        console.log(bedragElement);
         bedragElement.textContent = 'Prijs per nacht: €' + house.status;
 
         articleElement.setAttribute('id', house.name);
@@ -52,12 +50,10 @@ function showDialog(event) {
     const homeKey = event.currentTarget.id;
     const dialog = document.querySelector("#boekingDialog");
     const titleElement = dialog.querySelector(".hnbd");
-    console.log(homeKey);
     VakantiehuisService.checkIfHuisHasBooking(homeKey)
         .then(booking => {
-            console.log(booking);
             if (booking && booking.length > 0) {
-                showError(new Error("House is already booked"));
+                throw new Error("House is already booked");
             } else {
                 VakantiehuisService.getHuis(homeKey)
                     .then(home => {
@@ -86,27 +82,38 @@ function showDialog(event) {
 async function extractBookingFromDialog() {
     const dialogElement = document.querySelector("#boekingDialog");
     const nameElementOfHome = dialogElement.querySelector(".hnbd");
-    const datumVanElement = dialogElement.querySelector('input[name="datumVan"]');
-    const datumTotElement = dialogElement.querySelector('input[name="datumTot"]');
+    const datumVanElement = dialogElement.querySelector('input[name="datumVan"]').value;
+    const datumTotElement = dialogElement.querySelector('input[name="datumTot"]').value;
 
+    const huisName = nameElementOfHome.textContent.trim();
     try {
-        const huis = await VakantiehuisService.getHuis(nameElementOfHome);
+        const huis = await VakantiehuisService.getHuis(huisName);
         const currentHuurder = await BoekingService.getCurrentHuurder();
 
-        return new Boeking({
-            transactieNr: 1,
-            datumVan: datumVanElement.value,
-            datumTot: datumTotElement.value,
+        const datumVan = convertDateToArray(datumVanElement);
+        const datumTot = convertDateToArray(datumTotElement);
+
+        // Modify the huis object
+        huis.naam = huis.name;
+        delete huis.name;
+
+        const b1 = new Boeking({
+            datumVan: datumVan,
+            datumTot: datumTot,
             vakantiehuis: huis,
-            huurder: currentHuurder.huurder,
+            huurder: currentHuurder.huurder.gebruikersnaam,
         });
+
+        return b1;
     } catch (error) {
-        console.error('Error:', error);
         throw error;
     }
 }
 
-
+function convertDateToArray(dateString) {
+    const date = new Date(dateString);
+    return [date.getFullYear(), date.getMonth() + 1, date.getDate()];
+}
 
 async function dialogBookingSubmit(event) {
     event.preventDefault(); // Prevent the default form submission behavior
@@ -115,7 +122,7 @@ async function dialogBookingSubmit(event) {
         const bookingData = await extractBookingFromDialog();
         const booking = new Boeking(bookingData); // Instantiate a new Booking instance
         await BoekingService.addBoeking(booking);
-        window.location.href = '../page/mijnBoekingen.html'; // Redirect to server URL on success
+        window.location.href = '../page/mijnBoekingen.html';
     } catch (error) {
         console.error('Error:', error);
         showError(error);
@@ -138,10 +145,10 @@ function render() {
             throw error;
         });
 }
-const dialogCloseBtn = document.querySelector("#boekingDialog #closeDialogButton");
-const dialogSubmitBtn = document.querySelector("#boekingDialog #submitBtn")
-document.addEventListener(dialogCloseBtn, closeDialog);
-document.addEventListener(dialogSubmitBtn, dialogBookingSubmit);
+
+const dialog = document.querySelector("#boekingDialog")
+dialog.addEventListener('button', closeDialog);
+dialog.addEventListener('submit', dialogBookingSubmit);
 
 document.addEventListener('DOMContentLoaded', async () => {
     window.onload = await render();

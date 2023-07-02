@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mijn Boekingen beheren</title>
+    <link rel="stylesheet" href="styles/mijnHuizen.css">
+    <script type="module" src="../view/mijnHuizenView.js"></script>
+
+</head>
+<body>
+<header>
+    <h1>Mijn Huizen</h1>
+    <div class="navbar">
+        <div class="dropdown">
+            <button class="dropbtn">___
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="index.html">Home</a>
+                <a href="addHome.html">Voeg Huis toe</a>
+                <a href="mijnHuizen.html">Mijn huizen</a>
+                <a href="mijnBoekingen.html">Mijn boekingen</a>
+                <a href="login.html">Uitloggen</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <h1 id="page_title"></h1>
+        <div class="mijnHuizen"></div>
+        <div class="column">
+            <template id="huis-template">
+                <article id="homeName" class="huis">
+                    <h2 class="hn">Home Name</h2>
+                    <p class="adres">adres</p>
+                    <p class="woonoppervlakte">woonoppervlakte</p>
+                    <p class="bedrag">bedrag</p>
+                </article>
+            </template>
+        </div>
+    </div>
+</main>
+<section class="errormsg"></section>
+</body>
+
+<footer>
+    <p>&copy; 2023 Vacation Home Rentals. All rights reserved.</p>
+</footer>
+</html>

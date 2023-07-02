@@ -1,0 +1,191 @@
+/* Reset default styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+}
+
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    background-color: rgb(59, 61, 57);
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: rgb(59, 61, 57);
+    color: rgb(3, 207, 252);
+    padding: 20px;
+}
+
+main {
+    margin: auto;
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr;
+    border-radius: 15px;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-gap: 20px; /* Adjust the gap between columns if desired */
+}
+
+#page_title {
+    text-align: center;
+}
+
+.boekingen {
+    background-color: #333;
+}
+
+.column {
+    display: grid;
+    grid-gap: 20px;
+}
+
+header {
+    color: rgb(3, 207, 252);
+    background-color: #333;
+    padding: 20px;
+}
+
+.hn {
+    text-align: center;
+}
+
+#annuleerBoekingBtn {
+    margin-top: 10px;
+    background-color: rgb(59, 61, 57);
+    color: rgb(3, 207, 252);
+    width: 65px;
+    height: 35px;
+    cursor: pointer;
+}
+
+footer {
+    background-color: rgb(59, 61, 57);
+    padding: 20px;
+    text-align: center;
+}
+
+.boeking-container {
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.boeking-container:nth-child(odd) {
+    background-color: black;
+}
+
+.boeking-container:nth-child(even) {
+    background-color: black;
+}
+
+#annuleerDialog {
+    background-color: rgb(59, 61, 57);
+    color: rgb(3, 207, 252);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#annuleerDialog h2 {
+    text-align: center;
+}
+
+#annuleerDialog form {
+    padding: 20px;
+}
+
+#annuleerDialog #submitBtn {
+    margin-top: 5px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#annuleerDialog #closeDialogButton {
+    margin-top: 5px;
+    background-color: red;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.error {
+    border-color: red;
+    border-width: 2px;
+    text-align: center;
+}
+
+.errormsg {
+    margin: 1rem;
+    color: red;
+    font-weight: bold;
+    font-size: x-large;
+    text-align: center;
+}

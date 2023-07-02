@@ -1,5 +1,7 @@
 package org.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -7,7 +9,7 @@ import java.util.Objects;
 public class Verhuurder implements NamedObject, Serializable {
     private String gebruikersnaam;
     private static ArrayList<Verhuurder> alleVerhuurders = new ArrayList<>();
-    private static ArrayList<Vakantiehuis> alleHuizen = new ArrayList<>();
+
     private static Verhuurder deVerhuurder;
 
     public Verhuurder(String gebruikersnaam) {
@@ -17,15 +19,17 @@ public class Verhuurder implements NamedObject, Serializable {
     public static ArrayList<Verhuurder> getAlleVerhuurders() {
         return alleVerhuurders;
     }
-
-    public static void voegVerhuurderToe(Verhuurder nv) {
-        if (!getAlleVerhuurders().contains(nv)) {
-            getAlleVerhuurders().add(nv);
-        }
+    public Verhuurder() {
     }
 
     public static void setAlleVerhuurders(ArrayList<Verhuurder> alleVerhuurders) {
         Verhuurder.alleVerhuurders = alleVerhuurders;
+    }
+
+    public static void addVerhuurder(Verhuurder vh1) {
+        if (!getAlleVerhuurders().contains(vh1)) {
+            getAlleVerhuurders().add(vh1);
+        }
     }
 
     public String getGebruikersnaam() {
@@ -34,20 +38,6 @@ public class Verhuurder implements NamedObject, Serializable {
 
     public void setGebruikersnaam(String gebruikersnaam) {
         this.gebruikersnaam = gebruikersnaam;
-    }
-
-    public static ArrayList<Vakantiehuis> getAlleHuizen() {
-        return alleHuizen;
-    }
-
-    public static void setAlleHuizen(ArrayList<Vakantiehuis> alleHuizen) {
-        Verhuurder.alleHuizen = alleHuizen;
-    }
-
-    public void voegHuisToe(Vakantiehuis vh) {
-        if(!getAlleHuizen().contains(vh)) {
-            getAlleHuizen().add(vh);
-        }
     }
 
     public static Verhuurder getDeVerhuurder() {
@@ -73,6 +63,7 @@ public class Verhuurder implements NamedObject, Serializable {
                 '}';
     }
 
+    @JsonIgnore
     @Override
     public String getName() {
         return this.gebruikersnaam;
