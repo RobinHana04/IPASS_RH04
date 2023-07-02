@@ -21,6 +21,13 @@ public class PersistenceManager {
             }
         } else {
             System.out.println("File does not exist.");
+
+            // Create a new file
+            if (file.createNewFile()) {
+                System.out.println("New file created: " + filePath);
+            } else {
+                System.out.println("Failed to create the file.");
+            }
         }
     }
 

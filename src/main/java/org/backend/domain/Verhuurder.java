@@ -19,13 +19,6 @@ public class Verhuurder implements NamedObject, Serializable {
     public static ArrayList<Verhuurder> getAlleVerhuurders() {
         return alleVerhuurders;
     }
-
-    public static void voegVerhuurderToe(Verhuurder nv) {
-        if (!getAlleVerhuurders().contains(nv)) {
-            getAlleVerhuurders().add(nv);
-        }
-    }
-
     public Verhuurder() {
     }
 

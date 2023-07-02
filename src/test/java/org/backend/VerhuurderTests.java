@@ -37,8 +37,8 @@ public class VerhuurderTests {
 
     @Test
     public void DezelfdeVerhuurdersInLijst() {
-        Verhuurder.voegVerhuurderToe(v1);
-        Verhuurder.voegVerhuurderToe(v1);
+        Verhuurder.addVerhuurder(v1);
+        Verhuurder.addVerhuurder(v1);
         assertEquals(1, Verhuurder.getAlleVerhuurders().size());
     }
 

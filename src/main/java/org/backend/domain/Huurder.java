@@ -40,7 +40,7 @@ public class Huurder implements NamedObject, Serializable {
 
     public void addBoeking(Boeking b) {
         if (!getAlleBoekingen().contains(b)) {
-            getAlleBoekingen().add(b);// Associate the booking with the current Huurder
+            getAlleBoekingen().add(b);
         }
     }
 

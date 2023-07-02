@@ -92,7 +92,7 @@ main {
     text-align: center;
 }
 
-.boekingen {
+.mijnHuizen {
     background-color: #333;
 }
 
@@ -111,31 +111,22 @@ header {
     text-align: center;
 }
 
-#annuleerBoekingBtn {
-    margin-top: 10px;
-    background-color: rgb(59, 61, 57);
-    color: rgb(3, 207, 252);
-    width: 65px;
-    height: 35px;
-    cursor: pointer;
-}
-
 footer {
     background-color: rgb(59, 61, 57);
     padding: 20px;
     text-align: center;
 }
 
-.boeking-container {
+.house-container {
     margin-bottom: 20px;
     padding: 10px;
 }
 
-.boeking-container:nth-child(odd) {
+.house-container:nth-child(odd) {
     background-color: black;
 }
 
-.boeking-container:nth-child(even) {
+.house-container:nth-child(even) {
     background-color: black;
 }
 

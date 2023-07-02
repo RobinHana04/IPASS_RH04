@@ -15,8 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class BoekingTests {
     Boeking b1 = Boeking.getDeBoeking();
     Boeking b2 = Boeking.getDeBoeking();
-    Boeking b3 = Boeking.getDeBoeking();
-    Boeking b4 = Boeking.getDeBoeking();
     VacationRental vr = new VacationRental();
     Verhuurder v1 = Verhuurder.getDeVerhuurder();
     Vakantiehuis vh1 = Vakantiehuis.getHetVakantiehuis();
